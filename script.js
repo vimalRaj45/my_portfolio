@@ -262,6 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "Sprintora uses Llama-3.3 (via Groq API) to automatically decompose requirements into structured sprint tasks, estimate hours, map roles, and generate Kanban boards with real-time updates — all within a secure multi-tenant workspace.",
       techs: ["React.js", "Fastify", "PostgreSQL", "Llama-3.3 (Groq)", "JWT Auth"],
       link: "https://github.com/vimalRaj45/vsgrps_agile_frontend",
+      liveLink: "https://agile.vsgrps.com",
     },
     certifypro: {
       title: "CertifyPro",
@@ -271,6 +272,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "CertifyPro provides a cloud-based studio for designing and bulk-printing certificates, an interactive quiz engine with real-time scoring, and biometric face-verification using face-api.js to ensure assessment integrity.",
       techs: ["React.js", "Node.js", "PostgreSQL", "pdf-lib", "face-api.js"],
       link: "https://github.com/vimalRaj45/certify_front",
+      liveLink: "https://certifypro.vsgrps.com/",
     },
     cryptosign: {
       title: "CryptoSign Identity Engine",
@@ -298,6 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "A full-stack clinic management system with online appointment scheduling, digital prescription management, integrated Razorpay payment checkout, and push notification reminders — all wrapped in a patient-friendly React interface.",
       techs: ["React.js", "Fastify", "PostgreSQL", "Razorpay", "Service Workers"],
       link: "https://github.com/vimalRaj45/drkankasfrontend",
+      liveLink: "https://drkanaks.com/",
     },
     vschats: {
       title: "VSChats – Real-Time Chat Engine",
@@ -307,6 +310,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "VSChats uses Socket.io WebSockets for sub-50ms message delivery, React.js for a fluid UI with presence indicators and room-based messaging, backed by Express.js and persistent room state management.",
       techs: ["React.js", "Express.js", "Socket.io", "Node.js", "PWA"],
       link: "https://github.com/vimalRaj45/vschats",
+      liveLink: "https://vschat.netlify.app/",
     },
     edwyna: {
       title: "EventHub (Edwyna)",
@@ -325,6 +329,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "Built on Fastify and Neon serverless PostgreSQL, this portal handles multi-member team registrations, college affiliation validation, duplicate detection, and automated email communication pipelines for all registered teams.",
       techs: ["Node.js", "Fastify", "Neon PostgreSQL", "HTML5", "CSS3"],
       link: "https://github.com/vimalRaj45/aadhirasolutions_hacakthon",
+      liveLink: "https://aadhira.onrender.com/generator",
     },
     hybrid_crypto: {
       title: "Hybrid Encryption Hub",
@@ -343,6 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "A construction firm portal with scroll-powered animations, a residential project showcase, and a Vastu-compliant interactive building cost estimator that computes material and labor costs dynamically.",
       techs: ["React.js", "TailwindCSS", "tsparticles"],
       link: "https://github.com/vimalRaj45/SMB",
+      liveLink: "https://srimayilbuilders.com/",
     },
     easanmart: {
       title: "EasanMart Catalog",
@@ -352,6 +358,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "A lightweight, single-page grocery catalog app that reads live inventory directly from Google Sheets via API, with real-time search-and-filter capabilities and mobile-responsive layouts — zero backend server required.",
       techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Google Sheets API"],
       link: "https://github.com/vimalRaj45/easanmart",
+      liveLink: "https://easanmart.netlify.app/",
     },
     threads26: {
       title: "THREADS '26 Event Portal",
@@ -361,6 +368,7 @@ document.addEventListener("DOMContentLoaded", () => {
       solution: "A high-throughput ticketing engine backed by Fastify and Upstash Redis for real-time rate-limiting and visitor tracking. Automatically sends PDF tickets via email and validates attendance via QR-code scanning at the gate.",
       techs: ["Node.js", "Fastify", "PostgreSQL", "Upstash Redis", "PDFKit"],
       link: "https://github.com/vimalRaj45/threads26",
+      liveLink: "https://threadscse.co.in/",
     },
     sona_rd: {
       title: "Sona College R&D Portal",
@@ -398,6 +406,15 @@ document.addEventListener("DOMContentLoaded", () => {
       modalProblem.textContent = d.problem;
       modalSolution.textContent = d.solution;
       modalLink.setAttribute("href", d.link);
+      const liveBtn = document.getElementById("modal-live-link");
+      if (liveBtn) {
+        if (d.liveLink) {
+          liveBtn.setAttribute("href", d.liveLink);
+          liveBtn.style.display = "inline-flex";
+        } else {
+          liveBtn.style.display = "none";
+        }
+      }
       if (modalIcon) modalIcon.innerHTML = `<i class="${d.icon}"></i>`;
 
       modalTechs.innerHTML = "";
