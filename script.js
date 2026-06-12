@@ -1,5 +1,5 @@
 /* ============================================
-   PORTFOLIO SCRIPT – GSAP + AOS + BI ICONS
+   PORTFOLIO SCRIPT – AOS + BI ICONS
    Author: Sri Vimal Raj S
 ============================================ */
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,66 +16,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ============================================
-     2. GSAP SETUP
+     2. SKILL BARS
   ============================================ */
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Hero content entrance stagger (GSAP)
-  const heroTl = gsap.timeline({ delay: 0.2 });
-  heroTl.from(".hero-badge", { opacity: 0, y: -20, duration: 0.6, ease: "power2.out" })
-        .from(".hero-greeting", { opacity: 0, x: -30, duration: 0.5, ease: "power2.out" }, "-=0.3")
-        .from("#user-display-name", { opacity: 0, y: 40, duration: 0.8, ease: "power4.out" }, "-=0.3")
-        .from(".hero-title-type", { opacity: 0, x: -30, duration: 0.5, ease: "power2.out" }, "-=0.5")
-        .from(".hero-desc", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, "-=0.4")
-        .from(".hero-cta .btn", { opacity: 0, scale: 0.9, duration: 0.5, ease: "back.out(1.7)", stagger: 0.15 }, "-=0.3")
-        .from(".hero-socials .social-link", { opacity: 0, y: 15, duration: 0.5, ease: "power2.out", stagger: 0.1 }, "-=0.3")
-        .from(".hero-visual", { opacity: 0, scale: 0.85, duration: 1, ease: "power3.out" }, "-=1")
-        .from(".stat-chip", { opacity: 0, x: 30, duration: 0.6, ease: "power2.out", stagger: 0.15 }, "-=0.5");
-
-  // Skill bars – ScrollTrigger
   document.querySelectorAll(".skill-bar-progress").forEach((bar) => {
     const pct = bar.getAttribute("data-percent");
-    gsap.to(bar, {
-      width: pct + "%",
-      duration: 1.5,
-      ease: "power3.out",
-      scrollTrigger: {
-        trigger: bar,
-        start: "top 90%",
-        once: true,
-      },
-    });
-  });
-
-  // Project cards stagger on scroll
-  gsap.utils.toArray(".project-card").forEach((card, i) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 92%",
-        once: true,
-      },
-      opacity: 0,
-      y: 40,
-      duration: 0.7,
-      ease: "power3.out",
-      delay: (i % 3) * 0.1,
-    });
-  });
-
-  // Timeline cards
-  gsap.utils.toArray(".timeline-card").forEach((card) => {
-    gsap.from(card, {
-      scrollTrigger: {
-        trigger: card,
-        start: "top 88%",
-        once: true,
-      },
-      opacity: 0,
-      x: -40,
-      duration: 0.8,
-      ease: "power3.out",
-    });
+    setTimeout(() => {
+      bar.style.transition = "width 1.5s ease-out";
+      bar.style.width = pct + "%";
+    }, 500);
   });
 
   /* ============================================
@@ -165,11 +113,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateThemeIcon(nxt);
     initVanta(nxt);
 
-    // GSAP flip animation
-    gsap.to(themeToggle, {
-      rotate: 360, duration: 0.5, ease: "power2.out",
-      onComplete: () => gsap.set(themeToggle, { rotate: 0 }),
-    });
+    // Add generic rotation via CSS classes if needed, or simply let it swap.
   });
 
   function updateThemeIcon(theme) {
@@ -187,24 +131,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const isOpen = navLinks.classList.toggle("active");
     const lines  = hamburger.querySelectorAll("span");
 
+    lines.forEach(l => l.style.transition = "all 0.3s ease-out");
     if (isOpen) {
-      gsap.to(lines[0], { rotate: 45, y: 7, duration: 0.3, ease: "power2.out" });
-      gsap.to(lines[1], { opacity: 0, duration: 0.2 });
-      gsap.to(lines[2], { rotate: -45, y: -7, duration: 0.3, ease: "power2.out" });
+      lines[0].style.transform = "translateY(7px) rotate(45deg)";
+      lines[1].style.opacity = "0";
+      lines[2].style.transform = "translateY(-7px) rotate(-45deg)";
     } else {
-      gsap.to(lines[0], { rotate: 0, y: 0, duration: 0.3, ease: "power2.out" });
-      gsap.to(lines[1], { opacity: 1, duration: 0.2 });
-      gsap.to(lines[2], { rotate: 0, y: 0, duration: 0.3, ease: "power2.out" });
+      lines[0].style.transform = "translateY(0) rotate(0)";
+      lines[1].style.opacity = "1";
+      lines[2].style.transform = "translateY(0) rotate(0)";
     }
   });
 
   document.querySelectorAll(".nav-item").forEach((item) => {
     item.addEventListener("click", () => {
       navLinks.classList.remove("active");
-      const lines = hamburger.querySelectorAll("span");
-      gsap.to(lines[0], { rotate: 0, y: 0, duration: 0.3, ease: "power2.out" });
-      gsap.to(lines[1], { opacity: 1, duration: 0.2 });
-      gsap.to(lines[2], { rotate: 0, y: 0, duration: 0.3, ease: "power2.out" });
+      lines[0].style.transform = "translateY(0) rotate(0)";
+      lines[1].style.opacity = "1";
+      lines[2].style.transform = "translateY(0) rotate(0)";
     });
   });
 
@@ -293,37 +237,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const filter = btn.getAttribute("data-filter");
 
-      // GSAP stagger-in filtered cards
-      const visible = [];
-      const hidden  = [];
-
       projectCards.forEach((card) => {
         const cat = card.getAttribute("data-category");
         if (filter === "all" || cat === filter) {
-          visible.push(card);
+          card.style.display = "flex";
+          card.style.opacity = "1";
+          card.style.transform = "scale(1)";
         } else {
-          hidden.push(card);
+          card.style.display = "none";
         }
       });
-
-      // Hide
-      gsap.to(hidden, {
-        opacity: 0, scale: 0.92, duration: 0.25, ease: "power2.in",
-        onComplete: () => hidden.forEach((c) => (c.style.display = "none")),
-      });
-
-      // Show after slight delay
-      setTimeout(() => {
-        visible.forEach((c) => {
-          c.style.display = "flex";
-          c.style.opacity = "0";
-        });
-        gsap.to(visible, {
-          opacity: 1, scale: 1, duration: 0.4,
-          ease: "power3.out",
-          stagger: 0.07,
-        });
-      }, 200);
     });
   });
 
@@ -417,8 +340,8 @@ document.addEventListener("DOMContentLoaded", () => {
       subtitle: "Construction Cost Estimator & Web Portal",
       icon: "bi-buildings-fill",
       problem: "Construction firms lack visually compelling web presences that can engage potential clients, showcase projects, and provide instant cost estimates without requiring in-person meetings.",
-      solution: "A construction firm portal with GSAP ScrollTrigger-powered animations, a residential project showcase, and a Vastu-compliant interactive building cost estimator that computes material and labor costs dynamically.",
-      techs: ["React.js", "GSAP", "ScrollTrigger", "TailwindCSS", "tsparticles"],
+      solution: "A construction firm portal with scroll-powered animations, a residential project showcase, and a Vastu-compliant interactive building cost estimator that computes material and labor costs dynamically.",
+      techs: ["React.js", "TailwindCSS", "tsparticles"],
       link: "https://github.com/vimalRaj45/SMB",
     },
     easanmart: {
@@ -510,7 +433,7 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.style.background = "linear-gradient(135deg, #059669 0%, #34d399 100%)";
     btn.disabled = true;
 
-    gsap.from(btn, { scale: 0.95, duration: 0.4, ease: "back.out(2)" });
+
 
     setTimeout(() => {
       btn.innerHTML = orig;
