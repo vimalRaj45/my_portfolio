@@ -1692,7 +1692,13 @@ footer {
     margin-top: 1.5rem;
   }
 
-  .projects-grid { grid-template-columns: 1fr; }
+  .projects-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 1rem; 
+  }
+  .project-card-body { padding: 1rem; }
+  .project-title { font-size: 1.1rem; }
+  .project-description { font-size: 0.85rem; }
   .about-info-grid { grid-template-columns: 1fr 1fr; }
 
   .timeline { padding-left: 2.5rem; }
@@ -1709,6 +1715,12 @@ footer {
 @media (max-width: 480px) {
   .hero-name { font-size: 2.2rem; }
   .about-info-grid { grid-template-columns: 1fr; }
+  .projects-grid { 
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 0.75rem; 
+  }
+  .project-card-body { padding: 0.75rem; }
+  .tech-tag { font-size: 0.65rem; padding: 0.2rem 0.5rem; }
 }
 
 /* ============================================
