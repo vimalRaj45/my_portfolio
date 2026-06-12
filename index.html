@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sri Vimal Raj S | Full-Stack Developer Portfolio</title>
+  <meta name="description" content="Professional portfolio of Sri Vimal Raj S, a Full-Stack Developer specializing in Vue.js, React.js, Node.js, and scalable web engineering. Based in Salem, Tamil Nadu.">
+  <meta name="keywords" content="Sri Vimal Raj S, Software Developer, Portfolio, Vue.js, React.js, Web Development, Full Stack, Sona College of Technology">
+
+  <!-- Google Fonts – Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <!-- Bootstrap Icons 1.11 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- AOS – Animate On Scroll -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+
+  <!-- Portfolio CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ░░░ NOISE OVERLAY ░░░ -->
+  <div class="noise-overlay"></div>
+
+  <!-- ░░░ VANTA BACKGROUND ░░░ -->
+  <div id="vanta-bg"></div>
+
+  <!-- ░░░ CURSOR FOLLOWER ░░░ -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-ring" id="cursor-ring"></div>
+
+  <!-- ========================================
+       HEADER / NAV
+  ======================================== -->
+  <header id="main-header">
+    <div class="nav-container">
+      <a href="#hero" class="logo" id="nav-logo">VimalRaj<span>.dev</span></a>
+
+      <nav class="nav-links" id="navigation-menu" role="navigation" aria-label="Main Navigation">
+        <a href="#hero"   class="nav-item active" id="nav-home"><i class="bi bi-house-door"></i> Home</a>
+        <a href="#about"  class="nav-item" id="nav-about"><i class="bi bi-person"></i> About</a>
+        <a href="#skills" class="nav-item" id="nav-skills"><i class="bi bi-lightning-charge"></i> Skills</a>
+        <a href="#experience" class="nav-item" id="nav-experience"><i class="bi bi-briefcase"></i> Experience</a>
+        <a href="#projects" class="nav-item" id="nav-projects"><i class="bi bi-grid-1x2"></i> Projects</a>
+        <a href="#contact" class="nav-item" id="nav-contact"><i class="bi bi-send"></i> Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <i class="bi bi-sun-fill" id="theme-icon"></i>
+        </button>
+        <div class="hamburger" id="nav-hamburger" aria-label="Open Menu">
+          <span></span><span></span><span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================
+       HERO SECTION
+  ======================================== -->
+  <section id="hero">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="bi bi-stars"></i>
+          <span>Open to Full-Time Opportunities</span>
+        </div>
+
+        <span class="hero-greeting">Hello World, I'm</span>
+        <h1 class="hero-name" id="user-display-name">Sri Vimal Raj S</h1>
+
+        <div class="hero-title-type">
+          I'm a <span id="typed-text"></span><span class="typed-cursor">|</span>
+        </div>
+
+        <p class="hero-desc">
+          An aspiring software engineer with a passion for constructing modular web applications, crafting fluid interfaces, and solving real-world challenges through clean, maintainable code.
+        </p>
+
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary" id="btn-view-projects">
+            <i class="bi bi-grid-1x2-fill"></i> Explore Projects
+          </a>
+          <a href="vimalrajnew.pdf" target="_blank" class="btn btn-secondary" id="btn-download-resume" download>
+            <i class="bi bi-download"></i> Download Resume
+          </a>
+        </div>
+
+        <div class="hero-socials">
+          <a href="https://github.com/vimalraj45" target="_blank" class="social-link" aria-label="GitHub Profile">
+            <i class="bi bi-github"></i>
+          </a>
+          <a href="https://linkedin.com/in/vimalraj" target="_blank" class="social-link" aria-label="LinkedIn Profile">
+            <i class="bi bi-linkedin"></i>
+          </a>
+          <a href="mailto:vimalraj5207@gmail.com" class="social-link" aria-label="Email Address">
+            <i class="bi bi-envelope-fill"></i>
+          </a>
+          <a href="tel:+918807099288" class="social-link" aria-label="Phone">
+            <i class="bi bi-telephone-fill"></i>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="avatar-ring-outer">
+          <div class="avatar-ring-mid">
+            <div class="blob-container">
+              <div class="blob-avatar-text">VR</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-chip">
+            <i class="bi bi-collection-fill"></i>
+            <span><strong>13+</strong> Projects</span>
+          </div>
+          <div class="stat-chip">
+            <i class="bi bi-award-fill"></i>
+            <span><strong>4</strong> NPTEL Certs</span>
+          </div>
+          <div class="stat-chip">
+            <i class="bi bi-building-fill"></i>
+            <span><strong>2</strong> Internships</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="900">
+      <span>Scroll Down</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       ABOUT SECTION
+  ======================================== -->
+  <section id="about">
+    <div class="section-title-wrap" data-aos="fade-up">
+      <span class="section-tagline"><i class="bi bi-person-circle"></i> Introduction</span>
+      <h2 class="section-title">About Me</h2>
+      <p class="section-subtitle">A curious builder who turns ideas into digital reality</p>
+    </div>
+
+    <div class="about-grid">
+      <div class="about-card" data-aos="fade-right" data-aos-delay="100">
+        <div class="about-icon-wrap">
+          <i class="bi bi-person-workspace"></i>
+        </div>
+        <h3 class="about-objective-title">Career Objective</h3>
+        <p class="about-objective-text">
+          To start my professional career as an aspiring Software Developer, applying technical skills and a passion for engineering to design and build reliable, scalable, and secure web applications while continuously learning and growing in a global technology environment.
+        </p>
+        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
+          Currently pursuing my Bachelor's degree in Computer Science, I focus heavily on full-stack web architectures. I love bridging the gap between database designs and smooth, modern user experiences.
+        </p>
+      </div>
+
+      <div class="about-info-grid">
+        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="100">
+          <i class="bi bi-mortarboard-fill about-info-icon"></i>
+          <h4>Education</h4>
+          <p>B.E. Computer Science</p>
+          <span>Sona College of Tech (2023–27)</span>
+        </div>
+        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="200">
+          <i class="bi bi-graph-up-arrow about-info-icon"></i>
+          <h4>CGPA</h4>
+          <p>7.6 / 10</p>
+          <span>Current: 4th Year</span>
+        </div>
+        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="300">
+          <i class="bi bi-geo-alt-fill about-info-icon"></i>
+          <h4>Location</h4>
+          <p>Salem, Tamil Nadu</p>
+          <span>India</span>
+        </div>
+        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="400">
+          <i class="bi bi-patch-check-fill about-info-icon"></i>
+          <h4>Certificates</h4>
+          <p>4 NPTEL Credentials</p>
+          <span>AI &amp; Computing Specs</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       SKILLS SECTION
+  ======================================== -->
+  <section id="skills">
+    <div class="section-title-wrap" data-aos="fade-up">
+      <span class="section-tagline"><i class="bi bi-lightning-charge-fill"></i> My Arsenal</span>
+      <h2 class="section-title">Technical Expertise</h2>
+      <p class="section-subtitle">Technologies I wield to bring ideas to life</p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- Frontend -->
+      <div class="skills-category" data-aos="zoom-in" data-aos-delay="100">
+        <h3 class="skills-category-title">
+          <i class="bi bi-layout-text-window-reverse"></i>
+          Frontend Technologies
+        </h3>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-code-slash"></i> Vue.js / Vuex / Pinia</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-code-slash"></i> React.js</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-filetype-html"></i> HTML5 / CSS3 (Vanilla)</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-bootstrap"></i> Bootstrap 5 / UIkit / Tailwind</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend -->
+      <div class="skills-category" data-aos="zoom-in" data-aos-delay="200">
+        <h3 class="skills-category-title">
+          <i class="bi bi-server"></i>
+          Backend &amp; Databases
+        </h3>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-node-plus"></i> Express.js / Node.js / Fastify</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-filetype-java"></i> Java / Python / C</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-database-fill"></i> SQL (MySQL / PostgreSQL)</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-shield-lock"></i> OAuth 2.0 / Razorpay APIs</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="75"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tools & DevOps -->
+      <div class="skills-category" data-aos="zoom-in" data-aos-delay="300">
+        <h3 class="skills-category-title">
+          <i class="bi bi-tools"></i>
+          Tools &amp; DevOps
+        </h3>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-git"></i> Git / GitHub</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="88"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-boxes"></i> Docker Basics</span>
+              <span class="skill-percentage">Beginner</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="65"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-cpu"></i> REST API Design</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-cloud-check-fill"></i> Agile / Scrum Methodology</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Extras -->
+      <div class="skills-category" data-aos="zoom-in" data-aos-delay="400">
+        <h3 class="skills-category-title">
+          <i class="bi bi-magic"></i>
+          Animation &amp; UI
+        </h3>
+        <div class="skill-list">
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-play-circle-fill"></i> GSAP / ScrollTrigger</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="82"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-window-stack"></i> AOS / Framer Motion</span>
+              <span class="skill-percentage">Intermediate</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="78"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-eye-fill"></i> UI/UX Principles</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-item-info">
+              <span class="skill-name"><i class="bi bi-phone"></i> Responsive Design</span>
+              <span class="skill-percentage">Proficient</span>
+            </div>
+            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       EXPERIENCE SECTION
+  ======================================== -->
+  <section id="experience">
+    <div class="section-title-wrap" data-aos="fade-up">
+      <span class="section-tagline"><i class="bi bi-briefcase-fill"></i> My Career Journey</span>
+      <h2 class="section-title">Internship Experience</h2>
+      <p class="section-subtitle">Building real-world skills through hands-on internships</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
+        <div class="timeline-dot">
+          <i class="bi bi-building-fill"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Frontend Developer Intern</h3>
+              <div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Spirilia (Pre-Incubation)</div>
+            </div>
+            <span class="timeline-date"><i class="bi bi-calendar3"></i> Sep 2022 – Dec 2025</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Designed and integrated modular, reusable front-end interface components utilizing Vue.js, Vuex, and Pinia.</li>
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Connected client-side features with microservice RESTful APIs via Axios, handling secure asymmetric state mapping.</li>
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Collaborated in Agile sprints alongside cross-functional engineering teams to roll out stable web features.</li>
+          </ul>
+          <div class="timeline-tech-tags">
+            <span class="tech-tag"><i class="bi bi-code-square"></i> Vue.js</span>
+            <span class="tech-tag"><i class="bi bi-code-square"></i> Vuex</span>
+            <span class="tech-tag"><i class="bi bi-code-square"></i> Axios</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
+        <div class="timeline-dot">
+          <i class="bi bi-pc-display-horizontal"></i>
+        </div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3 class="timeline-role">Full-Stack Developer Intern</h3>
+              <div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Redmind Tech</div>
+            </div>
+            <span class="timeline-date"><i class="bi bi-calendar3"></i> Jun 2025</span>
+          </div>
+          <ul class="timeline-bullets">
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Built core server-side logic and schema hooks for database integration using PHP and relational databases.</li>
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Created interactive user dashboard interfaces implementing HTML5, CSS3, and dynamic vanilla JavaScript features.</li>
+            <li><i class="bi bi-arrow-right-circle-fill"></i> Optimized page layout styles, cutting load times and improving mobile styling responses.</li>
+          </ul>
+          <div class="timeline-tech-tags">
+            <span class="tech-tag"><i class="bi bi-code-square"></i> PHP</span>
+            <span class="tech-tag"><i class="bi bi-code-square"></i> MySQL</span>
+            <span class="tech-tag"><i class="bi bi-code-square"></i> JavaScript</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       PROJECTS SECTION
+  ======================================== -->
+  <section id="projects">
+    <div class="section-title-wrap" data-aos="fade-up">
+      <span class="section-tagline"><i class="bi bi-rocket-takeoff-fill"></i> My Creations</span>
+      <h2 class="section-title">Featured Projects</h2>
+      <p class="section-subtitle">Real problems solved with real code</p>
+    </div>
+
+    <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100">
+      <button class="filter-btn active" data-filter="all"><i class="bi bi-grid-3x3-gap-fill"></i> All Projects</button>
+      <button class="filter-btn" data-filter="freelance"><i class="bi bi-person-badge-fill"></i> Freelance</button>
+      <button class="filter-btn" data-filter="product"><i class="bi bi-box-seam-fill"></i> My Products</button>
+      <button class="filter-btn" data-filter="other"><i class="bi bi-layers-fill"></i> Other Projects</button>
+    </div>
+
+    <div class="projects-grid">
+
+      <!-- FREELANCE PROJECTS -->
+
+      <!-- Freelance 1: Edwyna (EventHub) -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-calendar-event-fill"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">EventHub (Edwyna)</h3>
+          <p class="project-description">A comprehensive event planning and coordination platform featuring interactive announcers, schedule mapping, organizer dashboards, and participant check-ins.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="edwyna">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Freelance 2: EasanMart -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-cart4"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">EasanMart Catalog</h3>
+          <p class="project-description">A grocery single-page catalog application for Easan Supermarket. Embeds a responsive search-and-filter inventory linked to Google Sheets APIs for simplified stock management.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">Bootstrap 5</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="easanmart">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Freelance 3: Dr. Kanak's Clinic -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-heart-pulse-fill"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">Dr. Kanak's Speciality Clinic</h3>
+          <p class="project-description">A clinic portal for patients with scheduling calendars, digital prescriptions, Razorpay payment checkouts, and service-worker push notifications for appointment reminders.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Fastify</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="drkankas">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Freelance 4: Sri Mayil Builders -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="250">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-buildings-fill"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">Sri Mayil Builders</h3>
+          <p class="project-description">A web portal for a construction firm with GSAP ScrollTrigger animations, residential showcase portfolios, and a client-facing Vastu-compliant building cost estimator.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">GSAP</span>
+            <span class="tech-tag">TailwindCSS</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="smb">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Freelance 5: CRM Ingestion Engine -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-envelope-check-fill"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">CRM Ingestion Engine</h3>
+          <p class="project-description">A backend automation daemon built with IMAPFlow, MailParser, and Playwright. Parses lead info from emails and drives headless browsers to execute CRM data entries automatically.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Playwright</span>
+            <span class="tech-tag">IMAPFlow</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="crm">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Freelance 6: AADHIRA Hackathon -->
+      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="350">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-trophy-fill"></i></div>
+          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">AADHIRA Hackathon Portal</h3>
+          <p class="project-description">Streamlined hackathon coordination database built with Fastify and Neon serverless PostgreSQL. Manages multi-member team registrations, college affiliations, and automated communication pipelines.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Fastify</span>
+            <span class="tech-tag">PostgreSQL</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="aadhira">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- PRODUCT PROJECTS -->
+
+      <!-- Product 1: CertifyPro -->
+      <article class="project-card" data-category="product" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-award-fill"></i></div>
+          <span class="project-badge badge-product"><i class="bi bi-box-seam-fill"></i> PRODUCT</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">CertifyPro</h3>
+          <p class="project-description">A certificate generation studio and assessment hub. Enables bulk processing of certificates on the edge, interactive quiz centers with real-time scoring, and biometric verification via face-api.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">face-api</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="certifypro">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Product 2: Sprintora AI -->
+      <article class="project-card" data-category="product" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-robot"></i></div>
+          <span class="project-badge badge-product"><i class="bi bi-box-seam-fill"></i> PRODUCT</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">Sprintora AI Workspace</h3>
+          <p class="project-description">An AI-assisted agile workspace powered by Llama-3.3 (via Groq API). Auto-transforms project requirements into tasks, estimates work hours, maps developer roles, and provides visual Kanban boards with secure multi-tenant isolation.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Fastify</span>
+            <span class="tech-tag">Llama-3.3</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="sprintora">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- OTHER PROJECTS -->
+
+      <!-- Other 1: THREADS '26 -->
+      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="100">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-ticket-perforated-fill"></i></div>
+          <span class="project-badge badge-other"><i class="bi bi-layers-fill"></i> EVENT</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">THREADS '26 Event Portal</h3>
+          <p class="project-description">Official ticketing and registration engine for the THREADS '26 symposium. Built with Fastify, PostgreSQL, and Upstash Redis—features real-time visitor tracking, automated email dispatchers, PDFKit ticket generators, and QR-code check-in verification.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">Fastify</span>
+            <span class="tech-tag">Upstash Redis</span>
+            <span class="tech-tag">PDFKit</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="threads26">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Other 2: VSChats -->
+      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="150">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-chat-dots-fill"></i></div>
+          <span class="project-badge badge-other"><i class="bi bi-layers-fill"></i> CHATS</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">VSChats</h3>
+          <p class="project-description">Real-time chat messaging application using Socket.io and Node.js for instant multi-user messaging sync with persistent message rooms and user presence indicators.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Express.js</span>
+            <span class="tech-tag">Socket.io</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="vschats">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Other 3: CryptoSign -->
+      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="200">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-pen-fill"></i></div>
+          <span class="project-badge badge-other"><i class="bi bi-shield-lock-fill"></i> SECURITY</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">CryptoSign</h3>
+          <p class="project-description">Decentralized signature application for secure document verification and identity claims using WebCrypto APIs for tamper-proof signing and validation entirely on the client-side.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">WebCrypto</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="cryptosign">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Other 4: Hybrid Crypto -->
+      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="250">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-lock-fill"></i></div>
+          <span class="project-badge badge-other"><i class="bi bi-shield-lock-fill"></i> ENCRYPTION</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">Hybrid Crypto</h3>
+          <p class="project-description">Client-side symmetric and asymmetric file encryption application for secure key exchange and document protection using RSA-OAEP and AES-GCM WebCrypto primitives.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="hybrid_crypto">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+      <!-- Other 5: Sona R&D Portal -->
+      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="300">
+        <div class="project-card-header">
+          <div class="project-icon-wrapper"><i class="bi bi-book-fill"></i></div>
+          <span class="project-badge badge-other"><i class="bi bi-journal-code"></i> RESEARCH</span>
+        </div>
+        <div class="project-card-body">
+          <h3 class="project-title">Sona R&D Portal</h3>
+          <p class="project-description">A centralized research management system for Sona College of Technology (Seed Money Project). Features role-based access control, research publication tracking, and database-driven workflows following SDLC guidelines.</p>
+          <div class="project-tech-list">
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+        </div>
+        <div class="project-card-footer">
+          <a href="#" class="project-link view-project-details" data-project="sona_rd">
+            <i class="bi bi-eye-fill"></i> Learn More
+          </a>
+          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       EDUCATION & CERTIFICATIONS
+  ======================================== -->
+  <section id="education-certifications">
+    <div class="cert-edu-grid">
+      <!-- Certifications -->
+      <div data-aos="slide-right">
+        <div class="section-title-wrap" style="text-align: left; margin-bottom: 2.5rem;">
+          <span class="section-tagline"><i class="bi bi-patch-check-fill"></i> Validation</span>
+          <h2 class="section-title">Certifications</h2>
+        </div>
+
+        <div class="certifications-wrap">
+          <div class="cert-card" data-aos="flip-down" data-aos-delay="100">
+            <div class="cert-icon"><i class="bi bi-cpu-fill"></i></div>
+            <div class="cert-info">
+              <h3>NPTEL: Machine Learning</h3>
+              <p><i class="bi bi-check2-circle"></i> Specialization in algorithms and computational theory</p>
+            </div>
+          </div>
+          <div class="cert-card" data-aos="flip-down" data-aos-delay="200">
+            <div class="cert-icon"><i class="bi bi-cloud-fill"></i></div>
+            <div class="cert-info">
+              <h3>NPTEL: Cloud Computing</h3>
+              <p><i class="bi bi-check2-circle"></i> Scalable models, deployments, and cloud architectures</p>
+            </div>
+          </div>
+          <div class="cert-card" data-aos="flip-down" data-aos-delay="300">
+            <div class="cert-icon"><i class="bi bi-lightbulb-fill"></i></div>
+            <div class="cert-info">
+              <h3>NPTEL: Design Thinking</h3>
+              <p><i class="bi bi-check2-circle"></i> Product blueprint strategies and user-centric architecture</p>
+            </div>
+          </div>
+          <div class="cert-card" data-aos="flip-down" data-aos-delay="400">
+            <div class="cert-icon"><i class="bi bi-diagram-3-fill"></i></div>
+            <div class="cert-info">
+              <h3>NPTEL: Data Structures</h3>
+              <p><i class="bi bi-check2-circle"></i> Advanced algorithms and programming fundamentals</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Education -->
+      <div data-aos="slide-left">
+        <div class="section-title-wrap" style="text-align: left; margin-bottom: 2.5rem;">
+          <span class="section-tagline"><i class="bi bi-mortarboard-fill"></i> Academic Foundation</span>
+          <h2 class="section-title">Education</h2>
+        </div>
+
+        <div class="edu-card">
+          <div class="edu-item">
+            <div class="edu-degree-icon"><i class="bi bi-mortarboard-fill"></i></div>
+            <h3 class="edu-degree">Bachelor of Engineering (B.E.)</h3>
+            <p class="edu-school">Computer Science and Engineering</p>
+            <div class="edu-meta">
+              <span><i class="bi bi-building"></i> Sona College of Technology, Salem</span>
+              <span class="edu-highlight"><i class="bi bi-graph-up-arrow"></i> CGPA: 7.6 — 4th Year</span>
+            </div>
+          </div>
+
+          <div class="edu-item">
+            <div class="edu-degree-icon"><i class="bi bi-book-fill"></i></div>
+            <h3 class="edu-degree">Higher Secondary Education (HSC)</h3>
+            <p class="edu-school">Mathematics &amp; Computer Science</p>
+            <div class="edu-meta">
+              <span><i class="bi bi-building"></i> Jedarpalyam Govt. Hr. Sec. School</span>
+              <span class="edu-highlight"><i class="bi bi-star-fill"></i> Score: 89%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CONTACT SECTION
+  ======================================== -->
+  <section id="contact">
+    <div class="section-title-wrap" data-aos="fade-up">
+      <span class="section-tagline"><i class="bi bi-send-fill"></i> Get In Touch</span>
+      <h2 class="section-title">Let's Connect</h2>
+      <p class="section-subtitle">Have a project in mind? Let's build something amazing together.</p>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info-wrap">
+        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="100">
+          <div class="contact-detail-icon"><i class="bi bi-envelope-fill"></i></div>
+          <div class="contact-detail-info">
+            <h4>Email Me</h4>
+            <p><a href="mailto:vimalraj5207@gmail.com">vimalraj5207@gmail.com</a></p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="200">
+          <div class="contact-detail-icon"><i class="bi bi-telephone-fill"></i></div>
+          <div class="contact-detail-info">
+            <h4>Call Me</h4>
+            <p><a href="tel:+918807099288">+91 8807099288</a></p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="300">
+          <div class="contact-detail-icon"><i class="bi bi-github"></i></div>
+          <div class="contact-detail-info">
+            <h4>GitHub</h4>
+            <p><a href="https://github.com/vimalraj45" target="_blank">github.com/vimalraj45</a></p>
+          </div>
+        </div>
+
+        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="400">
+          <div class="contact-detail-icon"><i class="bi bi-linkedin"></i></div>
+          <div class="contact-detail-info">
+            <h4>LinkedIn</h4>
+            <p><a href="https://linkedin.com/in/vimalraj" target="_blank">linkedin.com/in/vimalraj</a></p>
+          </div>
+        </div>
+      </div>
+
+      <form class="contact-form" id="contact-form-el" action="#" method="POST" onsubmit="event.preventDefault(); handleFormSubmit();" data-aos="zoom-in-up" data-aos-delay="200">
+        <div class="form-group">
+          <input type="text" id="contact-name" class="form-input" placeholder=" " required>
+          <label for="contact-name" class="form-label"><i class="bi bi-person-fill"></i> Your Name</label>
+        </div>
+        <div class="form-group">
+          <input type="email" id="contact-email" class="form-input" placeholder=" " required>
+          <label for="contact-email" class="form-label"><i class="bi bi-envelope-fill"></i> Email Address</label>
+        </div>
+        <div class="form-group">
+          <input type="text" id="contact-subject" class="form-input" placeholder=" ">
+          <label for="contact-subject" class="form-label"><i class="bi bi-chat-square-text-fill"></i> Subject</label>
+        </div>
+        <div class="form-group">
+          <textarea id="contact-message" class="form-input" placeholder=" " required></textarea>
+          <label for="contact-message" class="form-label"><i class="bi bi-pencil-fill"></i> Message</label>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; justify-content: center; gap: 0.75rem;">
+          <i class="bi bi-send-fill"></i> Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========================================
+       FOOTER
+  ======================================== -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-logo">VimalRaj<span>.dev</span></div>
+      <p class="footer-tagline">Crafting digital experiences with code &amp; creativity</p>
+      <div class="footer-socials">
+        <a href="https://github.com/vimalraj45" target="_blank" class="social-link" aria-label="GitHub">
+          <i class="bi bi-github"></i>
+        </a>
+        <a href="https://linkedin.com/in/vimalraj" target="_blank" class="social-link" aria-label="LinkedIn">
+          <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="mailto:vimalraj5207@gmail.com" class="social-link" aria-label="Email">
+          <i class="bi bi-envelope-fill"></i>
+        </a>
+        <a href="tel:+918807099288" class="social-link" aria-label="Phone">
+          <i class="bi bi-telephone-fill"></i>
+        </a>
+      </div>
+      <div class="footer-nav">
+        <a href="#hero">Home</a>
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <p class="footer-copyright">&copy; 2026 Sri Vimal Raj S. Built with <i class="bi bi-heart-fill" style="color: #ef4444;"></i> using Vanilla CSS, GSAP &amp; AOS.</p>
+    </div>
+  </footer>
+
+  <!-- Floating Contact Button -->
+  <a href="#contact" class="floating-contact-btn" id="floating-contact-trigger" aria-label="Contact Me">
+    <i class="bi bi-chat-dots-fill"></i>
+  </a>
+
+  <!-- ========================================
+       PROJECT MODAL
+  ======================================== -->
+  <div class="modal" id="project-modal" aria-hidden="true" role="dialog">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close Modal">
+        <i class="bi bi-x-lg"></i>
+      </button>
+      <div class="modal-header">
+        <div class="modal-icon-wrap" id="modal-icon">
+          <i class="bi bi-code-slash"></i>
+        </div>
+        <div>
+          <h3 class="modal-title" id="modal-project-title">Project Title</h3>
+          <p class="modal-subtitle" id="modal-project-subtitle">Category</p>
+        </div>
+      </div>
+      <div class="modal-section">
+        <h4><i class="bi bi-exclamation-circle-fill"></i> Problem Solved</h4>
+        <p class="modal-body" id="modal-problem"></p>
+      </div>
+      <div class="modal-section">
+        <h4><i class="bi bi-lightbulb-fill"></i> My Solution</h4>
+        <p class="modal-body" id="modal-solution"></p>
+      </div>
+      <div class="modal-section">
+        <h4><i class="bi bi-tools"></i> Technologies Used</h4>
+        <div class="project-tech-list" id="modal-tech-list"></div>
+      </div>
+      <div style="text-align: right; margin-top: 1.5rem;">
+        <a href="#" class="btn btn-primary" target="_blank" id="modal-repo-link">
+          <i class="bi bi-github"></i> View Repository
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================
+       SCRIPTS
+  ======================================== -->
+  <!-- GSAP -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+
+  <!-- AOS -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+
+  <!-- Three.js (Required for Vanta) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+
+  <!-- Vanta Globe -->
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" defer></script>
+
+  <!-- Portfolio Script -->
+  <script src="script.js" defer></script>
+</body>
+</html>

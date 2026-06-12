@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vimal Raj S - Ultimate Project Interview Prep Portal</title>
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #080c14;
+    --bg-secondary: #0f1626;
+    --bg-tertiary: #17223b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-blue: #3b82f6;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
+    --accent-purple: #8b5cf6;
+    --border-color: #263352;
+    --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+  }
+
+  [data-theme="light"] {
+    --bg-primary: #f1f5f9;
+    --bg-secondary: #ffffff;
+    --bg-tertiary: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+    --accent-blue: #1d4ed8;
+    --accent-emerald: #047857;
+    --accent-amber: #b45309;
+    --accent-purple: #6d28d9;
+    --border-color: #cbd5e1;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    display: flex;
+    min-height: 100vh;
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  /* Sidebar Navigation */
+  aside {
+    width: 295px;
+    background-color: var(--bg-secondary);
+    border-right: 1px solid var(--border-color);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 100;
+  }
+
+  .nav-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .nav-header h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--accent-blue);
+  }
+
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 4px;
+  }
+
+  /* Custom Scrollbar for Sidebar */
+  .nav-links::-webkit-scrollbar {
+    width: 4px;
+  }
+  .nav-links::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .nav-links::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+  }
+
+  .nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    transition: all 0.2s;
+  }
+
+  .nav-item a:hover, .nav-item.active a {
+    color: var(--text-primary);
+    background-color: var(--bg-tertiary);
+  }
+
+  .nav-item.active a {
+    border-left: 3px solid var(--accent-blue);
+    border-radius: 0 6px 6px 0;
+    padding-left: 9px;
+  }
+
+  .theme-toggle {
+    margin-top: 1rem;
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  /* Main Content Area */
+  main {
+    margin-left: 295px;
+    flex-grow: 1;
+    padding: 2rem;
+    max-width: 1100px;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.4rem;
+    color: var(--text-primary);
+  }
+
+  header p {
+    color: var(--text-secondary);
+    font-size: 1rem;
+  }
+
+  /* Search Engine Bar */
+  .search-container {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 12px 20px 12px 45px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.95rem;
+    transition: all 0.2s;
+  }
+
+  .search-input:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  }
+
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+  }
+
+  /* Project Section Container */
+  .project-section {
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 1.8rem;
+    margin-bottom: 3.5rem;
+    scroll-margin-top: 1.5rem;
+  }
+
+  .project-title-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .project-title {
+    font-size: 1.45rem;
+    font-weight: 800;
+  }
+
+  .project-tag {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 3px 8px;
+    border-radius: 5px;
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+  }
+
+  /* Core Overview Card */
+  .overview-card {
+    background-color: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .overview-section {
+    margin-bottom: 10px;
+  }
+  .overview-section:last-child {
+    margin-bottom: 0;
+  }
+
+  .overview-label {
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: var(--accent-blue);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 3px;
+  }
+
+  .overview-text {
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    text-align: justify;
+  }
+
+  .tech-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 4px;
+  }
+
+  .tech-badge {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 2.5px 8px;
+    border-radius: 4px;
+    font-size: 0.75pt;
+    font-family: var(--font-mono);
+    font-weight: 600;
+  }
+
+  /* Concept Deep-Dive Section */
+  .concept-container {
+    background-color: var(--bg-primary);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .concept-header {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--accent-purple);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 6px;
+  }
+
+  .concept-block {
+    margin-bottom: 1.2rem;
+  }
+
+  .concept-block:last-child {
+    margin-bottom: 0;
+  }
+
+  .concept-title {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+  }
+
+  .concept-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: justify;
+    margin-bottom: 6px;
+  }
+
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    border-radius: 6px;
+    overflow-x: auto;
+    color: #e2e8f0;
+    margin-top: 5px;
+    margin-bottom: 8px;
+  }
+
+  /* Q&A Accordion System */
+  .qa-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--text-primary);
+  }
+
+  .accordion-item {
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    overflow: hidden;
+    background-color: var(--bg-primary);
+  }
+
+  .accordion-header {
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    transition: background-color 0.2s;
+  }
+
+  .accordion-header:hover {
+    background-color: var(--bg-tertiary);
+  }
+
+  .accordion-header i {
+    color: var(--accent-blue);
+    transition: transform 0.3s;
+    font-size: 0.9rem;
+  }
+
+  .accordion-item.active .accordion-header i {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    background-color: var(--bg-secondary);
+  }
+
+  .accordion-body {
+    padding: 16px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border-color);
+    text-align: justify;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 950px) {
+    body {
+      flex-direction: column;
+    }
+    aside {
+      width: 100%;
+      height: auto;
+      position: relative;
+      border-right: none;
+      border-bottom: 1px solid var(--border-color);
+    }
+    .nav-links {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 1rem;
+    }
+    .nav-item a {
+      padding: 6px 12px;
+    }
+    main {
+      margin-left: 0;
+      padding: 1.5rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<aside>
+  <div class="nav-header">
+    <i class="bi bi-cpu-fill" style="color: var(--accent-blue); font-size: 1.4rem;"></i>
+    <h2>Project Masterclass</h2>
+  </div>
+  
+  <ul class="nav-links">
+    <li class="nav-item active" data-target="sprintora"><a href="#sprintora">Sprintora AI Workspace</a></li>
+    <li class="nav-item" data-target="certifypro"><a href="#certifypro">CertifyPro</a></li>
+    <li class="nav-item" data-target="sonard"><a href="#sonard">Sona R&D Portal</a></li>
+    <li class="nav-item" data-target="threads"><a href="#threads">THREADS '26 Event</a></li>
+    <li class="nav-item" data-target="crm"><a href="#crm">CRM Ingestion Engine</a></li>
+    <li class="nav-item" data-target="drkanaks"><a href="#drkanaks">Dr. Kanak's Clinic</a></li>
+    <li class="nav-item" data-target="vschats"><a href="#vschats">VSChats Engine</a></li>
+    <li class="nav-item" data-target="smb"><a href="#smb">Sri Mayil Builders</a></li>
+    <li class="nav-item" data-target="easanmart"><a href="#easanmart">EasanMart Catalog</a></li>
+    <li class="nav-item" data-target="aadhira"><a href="#aadhira">AADHIRA Hackathon</a></li>
+    <li class="nav-item" data-target="edwyna"><a href="#edwyna">EventHub (Edwyna)</a></li>
+    <li class="nav-item" data-target="cryptosign"><a href="#cryptosign">CryptoSign Engine</a></li>
+    <li class="nav-item" data-target="hybridcrypto"><a href="#hybridcrypto">Hybrid Crypto Hub</a></li>
+  </ul>
+  
+  <button class="theme-toggle" id="theme-btn">
+    <i class="bi bi-sun-fill"></i>
+    <span>Light Mode</span>
+  </button>
+</aside>
+
+<main>
+  <header>
+    <h1>Project Interview Prep Portal</h1>
+    <p>Complete tech specifications, concept deep-dives, database models, code blocks, and Q&As for all 13 projects.</p>
+  </header>
+  
+  <div class="search-container">
+    <i class="bi bi-search search-icon"></i>
+    <input type="text" id="search-box" class="search-input" placeholder="Search questions, stack parameters, keywords...">
+  </div>
+
+  <!-- SPRINTORA SECTION -->
+  <section id="sprintora" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">Sprintora AI Agile Workspace</h2>
+      <span class="project-tag">Fastify / Groq LLM / PostgreSQL</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Agile task breakdowns and hour estimations from raw text requirements are highly subjective, slow, and prone to human estimation errors.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Automatically digests project scope requirements and translates them into structured developer tasks, assigns roles, and estimates task weights using the Llama-3.3 LLM, displaying them in a secure multi-tenant Kanban dashboard.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">TailwindCSS</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Fastify</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">Llama-3.3 (Groq API)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. LLM Integration & Structured JSON Parsing</div>
+        <div class="concept-desc">
+          We configure Groq's API parameter <code>response_format: { type: "json_object" }</code> and pass a strict JSON schema to enforce standard outputs, preventing API parsing crashes:
+        </div>
+        <div class="code-block">
+const fastify = require('fastify')();
+const ajv = require('ajv')({ allErrors: true });
+const taskSchema = {
+  type: "object",
+  required: ["title", "role", "estimated_hours"],
+  properties: {
+    title: { type: "string" },
+    role: { type: "string", enum: ["frontend", "backend", "qa", "devops"] },
+    estimated_hours: { type: "number" }
+  }
+};
+const validate = ajv.compile(taskSchema);
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFYPRO SECTION -->
+  <section id="certifypro" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">CertifyPro</h2>
+      <span class="project-tag">React / face-api.js / pdf-lib</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Generating and sending hundreds of custom PDF credentials consumes server bandwidth/CPU, and users can cheat on online certification quizzes by having someone else sit the test.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Offloads PDF generation directly to the client browser using <code>pdf-lib</code> and secures exam integrity using client-side biometric validation (webcam face matching) via <code>face-api.js</code> before unlocking quizzes.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">face-api.js</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Express</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">pdf-lib</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. Biometric Authentication & Euclidean Landmark Scoring</div>
+        <div class="concept-desc">
+          Extracts 128-dimensional facial landmarks from the camera stream and computes Euclidean distance comparison on the client side:
+        </div>
+        <div class="code-block">
+const distance = faceapi.euclideanDistance(referenceDescriptor, currentDescriptor);
+if (distance < 0.6) {
+  // Face matched!
+}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SONA R&D SECTION -->
+  <section id="sonard" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">Sona College R&D Portal</h2>
+      <span class="project-tag">React / Spring Boot / MySQL</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Academic research proposals, budget approvals, and publication tracking in colleges involve slow, manual multi-level paper routing (Student -> HOD -> Dean -> Principal).</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Automates the submission-to-approval workflow through a digital State Machine transition logic backed by role-based access control (RBAC) and atomic budget locks.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">Java Spring Boot</span>
+          <span class="tech-badge">Spring Security</span>
+          <span class="tech-badge">JPA / Hibernate</span>
+          <span class="tech-badge">MySQL</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. State Transition Machine for Budget Allocations</div>
+        <div class="concept-desc">
+          We use Java transaction propagation to lock and deduct budgets concurrently:
+        </div>
+        <div class="code-block">
+@Transactional
+public void approveProposal(Long proposalId) {
+    Proposal proposal = proposalRepository.findById(proposalId).orElseThrow();
+    proposal.setStatus(ProposalStatus.DEAN_APPROVED);
+    DepartmentBudget budget = budgetRepository.findAndLockByDept(proposal.getDepartment());
+    budget.deduct(proposal.getRequestedAmount());
+}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THREADS SECTION -->
+  <section id="threads" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">THREADS '26 Event Portal</h2>
+      <span class="project-tag">Node / Fastify / Upstash Redis</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">High-traffic college symposium registration systems suffer database concurrency crashes, overbooking race conditions, and ticket forgery.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Uses a single-threaded in-memory Redis cache for atomic seat decrementing and locks, generating secure PDF tickets with RSA-signed QR codes.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Fastify</span>
+          <span class="tech-badge">Upstash Redis</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">PDFKit</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. Redis Atomic Counters & Lua Locking</div>
+        <div class="concept-desc">
+          Because Redis is single-threaded, we write a Lua script to decrement ticket seat limits safely:
+        </div>
+        <div class="code-block">
+local count = tonumber(redis.call('get', KEYS[1]))
+if count and count > 0 then
+    redis.call('decr', KEYS[1])
+    return 1
+else
+    return 0
+end
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRM INGESTION SECTION -->
+  <section id="crm" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">CRM Ingestion Engine</h2>
+      <span class="project-tag">Node.js / Playwright / IMAPFlow</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Manually checking sales mail pipelines, copying customer inquiry details, and typing them into proprietary CRM portals is time-consuming and prone to delays.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Automates ingestion by listening to inbox sockets via IMAP, parsing emails using MailParser, and spinning up Playwright headless browsers to automatically type and submit leads.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Playwright</span>
+          <span class="tech-badge">IMAPFlow</span>
+          <span class="tech-badge">MailParser</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. IMAP email watching & HTML scraping pipeline</div>
+        <div class="concept-desc">
+          IMAPFlow connects to the server and listens for inbox updates, triggering Playwright browsers:
+        </div>
+        <div class="code-block">
+const { chromium } = require('playwright');
+const browser = await chromium.launch({ headless: true });
+const page = await browser.newPage();
+await page.goto('https://crm.internal.com/login');
+await page.fill('#username', process.env.CRM_USER);
+await page.fill('#password', process.env.CRM_PASS);
+await page.click('button[type="submit"]');
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DR KANAKS SECTION -->
+  <section id="drkanaks" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">Dr. Kanak's Speciality Clinic</h2>
+      <span class="project-tag">React / Fastify / Razorpay</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Clinics lose bookings due to complex scheduling systems, payment trust issues, and patients forgetting their appointments.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Provides a client booking portal featuring real-time calendars, secure Razorpay checkout with webhook verification, and PWA push notifications.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Fastify</span>
+          <span class="tech-badge">PostgreSQL</span>
+          <span class="tech-badge">Razorpay API</span>
+          <span class="tech-badge">Web Push APIs</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. Webhook Signature Verification</div>
+        <div class="concept-desc">
+          To ensure webhook callbacks are valid Razorpay requests, we perform a local SHA256 HMAC checksum comparison using the request body:
+        </div>
+        <div class="code-block">
+const crypto = require('crypto');
+const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
+const shasum = crypto.createHmac('sha256', secret);
+shasum.update(JSON.stringify(request.body));
+const digest = shasum.digest('hex');
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VSCHATS SECTION -->
+  <section id="vschats" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">VSChats Engine</h2>
+      <span class="project-tag">React / Express / Socket.io</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Standard polling chat apps are slow, consume heavy server bandwidth, and do not work offline.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Establishes a persistent, low-latency Socket.io connection for real-time messages and offline support via PWA caching.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Express.js</span>
+          <span class="tech-badge">Socket.io</span>
+          <span class="tech-badge">MongoDB</span>
+          <span class="tech-badge">Service Workers</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. Socket.io Event Handling & Handshake Auth</div>
+        <div class="concept-desc">
+          Socket.io intercepts standard HTTP handshake upgrades and authenticate clients during connection setup:
+        </div>
+        <div class="code-block">
+const io = require('socket.io')(server);
+io.use((socket, next) => {
+    const token = socket.handshake.auth.token;
+    if (isValid(token)) next();
+    else next(new Error("Unauthorized connection"));
+});
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SRI MAYIL BUILDERS SECTION -->
+  <section id="smb" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">Sri Mayil Builders Portal</h2>
+      <span class="project-tag">React / GSAP / TailwindCSS</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Construction firm websites look static and outdated, and clients struggle to calculate building construction costs interactively.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Enhances UX using premium hardware-accelerated GSAP scroll animations and features a client-facing Vastu-compliant cost estimator calculator.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">React.js</span>
+          <span class="tech-badge">GSAP ScrollTrigger</span>
+          <span class="tech-badge">TailwindCSS</span>
+          <span class="tech-badge">tsparticles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EASANMART SECTION -->
+  <section id="easanmart" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">EasanMart Catalog</h2>
+      <span class="project-tag">HTML5 / JavaScript / Google Sheets API</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Small grocery stores cannot afford full database hosting but still need an automated stock inventory catalog.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Hooks a client-side catalog search SPA directly to the Google Sheets database APIs, allowing store managers to update stock simply by editing a spreadsheet.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+          <span class="tech-badge">Vanilla JavaScript</span>
+          <span class="tech-badge">Bootstrap 5</span>
+          <span class="tech-badge">Google Sheets API v4</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AADHIRA SECTION -->
+  <section id="aadhira" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">AADHIRA Hackathon Portal</h2>
+      <span class="project-tag">Node / Fastify / Neon PostgreSQL</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Hackathon coordinators struggle to manage team size constraints, college affiliations, and communication channels during registration.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Provides a fast coordination interface managing serverless connection pooling and validation filters for multi-member registrations.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Node.js</span>
+          <span class="tech-badge">Fastify</span>
+          <span class="tech-badge">Neon Serverless PostgreSQL</span>
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDWYNA SECTION -->
+  <section id="edwyna" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">EventHub (Edwyna)</h2>
+      <span class="project-tag">HTML5 / CSS3 / JavaScript</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Event planners struggle with chaotic scheduling updates, dynamic attendee announcements, and ticket check-ins.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Implements a client-side SPA detailing interactive announcers, schedule grids, and organizer check-in lists with responsive HTML breakpoints.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">HTML5</span>
+          <span class="tech-badge">CSS3</span>
+          <span class="tech-badge">Vanilla JavaScript</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRYPTOSIGN SECTION -->
+  <section id="cryptosign" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">CryptoSign Identity Engine</h2>
+      <span class="project-tag">Python / Flask / Cryptography</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Traditional document validation depends on centralized auth servers, exposing identity files to potential data leaks.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Creates cryptographically signed documents locally using RSA-PSS key generation, allowing public-key validation of file authenticity.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Flask</span>
+          <span class="tech-badge">pyca/cryptography</span>
+          <span class="tech-badge">Bootstrap 5</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="concept-container">
+      <div class="concept-header"><i class="bi bi-diagram-3-fill"></i> In-Depth Concepts Deep-Dive</div>
+      <div class="concept-block">
+        <div class="concept-title">1. RSA-PSS Cryptographic Signature Generation</div>
+        <div class="concept-desc">
+          To perform secure signing, the backend uses Python's cryptography library to sign a hashed document payload with the user's RSA private key:
+        </div>
+        <div class="code-block">
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.asymmetric import padding
+
+signature = private_key.sign(
+    document_bytes,
+    padding.PSS(
+        mgf=padding.MGF1(hashes.SHA256()),
+        salt_length=padding.PSS.MAX_LENGTH
+    ),
+    hashes.SHA256()
+)
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HYBRID CRYPTO SECTION -->
+  <section id="hybridcrypto" class="project-section">
+    <div class="project-title-wrap">
+      <h2 class="project-title">Hybrid Encryption Hub</h2>
+      <span class="project-tag">Python / WebCrypto API / AES-GCM</span>
+    </div>
+    
+    <div class="overview-card">
+      <div class="overview-section">
+        <div class="overview-label"><i class="bi bi-exclamation-triangle-fill"></i> Problem Solved</div>
+        <div class="overview-text">Public key cryptography is secure but slow for large files; symmetric cryptography is fast but insecure for key sharing over channels.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-lightbulb-fill"></i> Engineering Solution</div>
+        <div class="overview-text">Demonstrates a hybrid approach encrypting files symmetrically via fast AES-GCM and encrypting the AES session key using asymmetric RSA.</div>
+      </div>
+      <div class="overview-section" style="margin-top: 10px;">
+        <div class="overview-label"><i class="bi bi-cpu-fill"></i> Tech Stack</div>
+        <div class="tech-badges">
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Flask</span>
+          <span class="tech-badge">WebCrypto API</span>
+          <span class="tech-badge">AES-128-GCM</span>
+          <span class="tech-badge">RSA-2048</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Theme Switching
+  const themeBtn = document.getElementById('theme-btn');
+  const themeIcon = themeBtn.querySelector('i');
+  const themeText = themeBtn.querySelector('span');
+  
+  themeBtn.addEventListener('click', () => {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      themeIcon.className = 'bi bi-sun-fill';
+      themeText.textContent = 'Light Mode';
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      themeIcon.className = 'bi bi-moon-fill';
+      themeText.textContent = 'Dark Mode';
+    }
+  });
+
+  // Accordion Logic
+  const accordions = document.querySelectorAll('.accordion-header');
+  accordions.forEach(acc => {
+    acc.addEventListener('click', () => {
+      const item = acc.parentElement;
+      const content = acc.nextElementSibling;
+      const isActive = item.classList.contains('active');
+      
+      document.querySelectorAll('.accordion-item').forEach(otherItem => {
+        otherItem.classList.remove('active');
+        otherItem.querySelector('.accordion-content').style.maxHeight = null;
+      });
+      
+      if (!isActive) {
+        item.classList.add('active');
+        content.style.maxHeight = content.scrollHeight + "px";
+      }
+    });
+  });
+
+  // Sidebar Highlighting & Scroll Spy
+  const sections = document.querySelectorAll('.project-section');
+  const navItems = document.querySelectorAll('.nav-item');
+  
+  window.addEventListener('scroll', () => {
+    let current = "";
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (pageYOffset >= (sectionTop - 150)) {
+        current = section.getAttribute('id');
+      }
+    });
+    
+    navItems.forEach(item => {
+      item.classList.remove('active');
+      if (item.getAttribute('data-target') === current) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // Real-time Search Indexing
+  const searchBox = document.getElementById('search-box');
+  const cards = document.querySelectorAll('.accordion-item');
+  const conceptBlocks = document.querySelectorAll('.concept-block');
+  const sectionsEl = document.querySelectorAll('.project-section');
+  
+  searchBox.addEventListener('keyup', (e) => {
+    const term = e.target.value.toLowerCase();
+    
+    // Search sections directly
+    sectionsEl.forEach(sec => {
+      const secText = sec.textContent.toLowerCase();
+      if (secText.includes(term)) {
+        sec.style.display = 'block';
+      } else {
+        sec.style.display = 'none';
+      }
+    });
+
+    // Accordion Search
+    cards.forEach(card => {
+      const headerText = card.querySelector('.accordion-header').textContent.toLowerCase();
+      const bodyText = card.querySelector('.accordion-body').textContent.toLowerCase();
+      if (headerText.includes(term) || bodyText.includes(term)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+</body>
+</html>
