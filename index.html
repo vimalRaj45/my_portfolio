@@ -2,12 +2,12 @@
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>Sri Vimal Raj S | Full-Stack Developer Portfolio</title>
   <meta name="description" content="Professional portfolio of Sri Vimal Raj S, a Full-Stack Developer specializing in Vue.js, React.js, Node.js, and scalable web engineering. Based in Salem, Tamil Nadu.">
   <meta name="keywords" content="Sri Vimal Raj S, Software Developer, Portfolio, Vue.js, React.js, Web Development, Full Stack, Sona College of Technology">
 
-  <!-- Google Fonts – Outfit -->
+  <!-- Google Fonts – Outfit + Inter -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -18,946 +18,1686 @@
   <!-- AOS – Animate On Scroll -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
 
-  <!-- Portfolio CSS -->
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ----------------------------------------------
+       GLOBAL RESET & BASE
+    ------------------------------------------------ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-primary: #0b0d15;
+      --bg-secondary: #11131f;
+      --bg-card: #181b2b;
+      --bg-card-hover: #1f2340;
+      --text-primary: #f0f3fd;
+      --text-secondary: #b1b9d9;
+      --text-muted: #6b7399;
+      --accent: #6c8cff;
+      --accent-glow: rgba(108, 140, 255, 0.25);
+      --border-light: #2a2f4a;
+      --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+      --radius: 20px;
+      --radius-sm: 12px;
+      --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --font-display: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding: 0 1rem;
+      transition: background 0.2s;
+    }
+
+    @media (min-width: 992px) {
+      body {
+        padding: 0 2.5rem;
+      }
+    }
+
+    /* ---------- NOISE ---------- */
+    .noise-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 300px 300px;
+    }
+
+    /* ---------- VANTA BG ---------- */
+    #vanta-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* ---------- CURSOR (desktop only) ---------- */
+    @media (hover: hover) {
+      .cursor-dot,
+      .cursor-ring {
+        position: fixed;
+        pointer-events: none;
+        z-index: 99999;
+        border-radius: 50%;
+        display: block;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background: var(--accent);
+        transform: translate(-50%, -50%);
+        box-shadow: 0 0 20px var(--accent-glow);
+      }
+      .cursor-ring {
+        width: 40px;
+        height: 40px;
+        border: 1.5px solid rgba(108, 140, 255, 0.5);
+        transform: translate(-50%, -50%);
+        transition: width 0.2s, height 0.2s, border-color 0.2s;
+      }
+      body:hover .cursor-dot,
+      body:hover .cursor-ring {
+        opacity: 1;
+      }
+    }
+
+    /* ---------- LAYOUT ---------- */
+    section {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 5rem 0.5rem;
+    }
+
+    @media (max-width: 640px) {
+      section {
+        padding: 3.5rem 0.25rem;
+      }
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-tagline {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(108, 140, 255, 0.12);
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      margin-bottom: 1rem;
+      border: 1px solid rgba(108, 140, 255, 0.15);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    /* ---------- HEADER / NAV (fully responsive) ---------- */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 0.6rem 1rem;
+      background: rgba(11, 13, 21, 0.7);
+      backdrop-filter: blur(16px) saturate(180%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      transition: background 0.3s;
+    }
+
+    @media (min-width: 992px) {
+      header {
+        padding: 0.6rem 2.5rem;
+      }
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.02em;
+    }
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.2rem;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 820px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: var(--bg-secondary);
+        padding: 1.2rem 0.8rem;
+        border-radius: var(--radius-sm);
+        margin-top: 0.5rem;
+        border: 1px solid var(--border-light);
+        gap: 0.4rem;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-actions {
+        margin-left: auto;
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+      }
+    }
+
+    .nav-item {
+      color: var(--text-secondary);
+      text-decoration: none;
+      padding: 0.5rem 0.9rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+    .nav-item i {
+      font-size: 1rem;
+    }
+    .nav-item.active,
+    .nav-item:hover {
+      background: rgba(108, 140, 255, 0.12);
+      color: var(--text-primary);
+    }
+
+    .theme-toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border-radius: 40px;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+    .theme-toggle-btn:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .hamburger {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 0.2rem 0.4rem;
+    }
+    .hamburger span {
+      display: block;
+      width: 26px;
+      height: 2.5px;
+      background: var(--text-secondary);
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.open span:nth-child(2) {
+      opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    @media (min-width: 821px) {
+      .hamburger {
+        display: none;
+      }
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+    }
+
+    /* ---------- HERO ---------- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 5rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    @media (max-width: 880px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+      }
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(108, 140, 255, 0.08);
+      border: 1px solid rgba(108, 140, 255, 0.15);
+      padding: 0.4rem 1.4rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: var(--accent);
+      font-weight: 500;
+      width: fit-content;
+    }
+    @media (max-width: 880px) {
+      .hero-badge {
+        margin: 0 auto;
+      }
+    }
+
+    .hero-greeting {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    .hero-name {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-title-type {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+    #typed-text {
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .typed-cursor {
+      animation: blink 0.8s step-end infinite;
+      color: var(--accent);
+    }
+    @keyframes blink {
+      0%,
+      100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    .hero-desc {
+      max-width: 520px;
+      color: var(--text-secondary);
+      font-size: 1.05rem;
+    }
+    @media (max-width: 880px) {
+      .hero-desc {
+        margin: 0 auto;
+      }
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 880px) {
+      .hero-cta {
+        justify-content: center;
+      }
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.8rem 1.8rem;
+      border-radius: 60px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+      border: 1px solid transparent;
+      font-size: 0.95rem;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #0b0d15;
+      border-color: var(--accent);
+      box-shadow: 0 6px 20px var(--accent-glow);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px var(--accent-glow);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border-color: var(--border-light);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.04);
+      border-color: var(--text-secondary);
+    }
+
+    .hero-socials {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    @media (max-width: 880px) {
+      .hero-socials {
+        justify-content: center;
+      }
+    }
+    .social-link {
+      color: var(--text-secondary);
+      font-size: 1.4rem;
+      transition: var(--transition);
+      display: inline-flex;
+    }
+    .social-link:hover {
+      color: var(--accent);
+      transform: scale(1.1);
+    }
+
+    .hero-visual {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .avatar-ring-outer {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--accent), #a78bfa, var(--accent));
+      padding: 5px;
+      animation: spin 16s linear infinite;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    .avatar-ring-mid {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blob-container {
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #1f2340, #0b0d15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .blob-avatar-text {
+      font-family: var(--font-display);
+      font-weight: 900;
+      font-size: 3.4rem;
+      color: var(--accent);
+      letter-spacing: -0.04em;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      justify-content: center;
+    }
+    .stat-chip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      padding: 0.5rem 1.2rem;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      backdrop-filter: blur(4px);
+    }
+    .stat-chip strong {
+      color: var(--text-primary);
+    }
+    .stat-chip i {
+      color: var(--accent);
+    }
+
+    .scroll-indicator {
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+    }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    @media (max-width: 768px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: var(--transition);
+    }
+    .about-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+    .about-icon-wrap {
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+    .about-objective-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+    .about-objective-text {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+
+    .about-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 480px) {
+      .about-info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .info-item {
+      text-align: center;
+      padding: 1.6rem 1rem;
+    }
+    .about-info-icon {
+      font-size: 1.8rem;
+      color: var(--accent);
+      margin-bottom: 0.4rem;
+    }
+    .info-item h4 {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+    .info-item p {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    .info-item span {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+    }
+
+    .skills-category {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 1.8rem 1.5rem;
+    }
+    .skills-category-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .skills-category-title i {
+      color: var(--accent);
+    }
+
+    .skill-item {
+      margin-bottom: 1.2rem;
+    }
+    .skill-item-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      margin-bottom: 0.2rem;
+    }
+    .skill-name {
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .skill-percentage {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    .skill-bar-container {
+      width: 100%;
+      height: 5px;
+      background: var(--border-light);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .skill-bar-progress {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--accent), #a78bfa);
+      border-radius: 10px;
+      transition: width 1s ease;
+    }
+
+    /* ---------- EXPERIENCE (timeline) ---------- */
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 1rem;
+      position: relative;
+    }
+    @media (max-width: 500px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+    }
+    .timeline-dot {
+      width: 40px;
+      height: 40px;
+      background: var(--bg-card);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .timeline-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 1.6rem 2rem;
+    }
+    .timeline-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 0.8rem;
+      margin-bottom: 0.8rem;
+    }
+    .timeline-role {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .timeline-company {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .timeline-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .timeline-bullets {
+      list-style: none;
+      margin: 1rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .timeline-bullets li {
+      display: flex;
+      gap: 0.6rem;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .timeline-bullets li i {
+      color: var(--accent);
+      margin-top: 0.2rem;
+    }
+    .timeline-tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .tech-tag {
+      background: rgba(108, 140, 255, 0.08);
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--accent);
+      border: 1px solid rgba(108, 140, 255, 0.1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.2rem;
+    }
+
+    /* ---------- PROJECTS ---------- */
+    .filter-tabs {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.6rem;
+      margin-bottom: 2.5rem;
+    }
+    .filter-btn {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-secondary);
+      padding: 0.5rem 1.4rem;
+      border-radius: 40px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .filter-btn.active,
+    .filter-btn:hover {
+      background: var(--accent);
+      color: #0b0d15;
+      border-color: var(--accent);
+      box-shadow: 0 4px 16px var(--accent-glow);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.8rem;
+    }
+
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition);
+    }
+    .project-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-6px);
+      border-color: var(--accent);
+    }
+    .project-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.8rem;
+    }
+    .project-icon-wrapper {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+    .project-badge {
+      font-size: 0.6rem;
+      font-weight: 600;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .badge-freelance {
+      background: rgba(108, 140, 255, 0.15);
+      color: #8aa4ff;
+    }
+    .badge-other {
+      background: rgba(167, 139, 250, 0.12);
+      color: #a78bfa;
+    }
+    .project-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+    .project-description {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      flex: 1;
+    }
+    .project-tech-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin: 0.8rem 0 1rem;
+    }
+    .project-card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      border-top: 1px solid var(--border-light);
+      padding-top: 0.8rem;
+    }
+    .project-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      transition: var(--transition);
+    }
+    .project-link:hover {
+      color: var(--accent);
+    }
+    .project-link-icon {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+    .project-link-icon:hover {
+      color: var(--text-primary);
+    }
+
+    /* ---------- EDUCATION / CERT ---------- */
+    .cert-edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .cert-edu-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+    }
+
+    .certifications-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .cert-card {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      background: var(--bg-card);
+      padding: 1rem 1.4rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+    }
+    .cert-icon {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    .cert-info h3 {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .cert-info p {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+    }
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .edu-item {
+      border-bottom: 1px solid var(--border-light);
+      padding-bottom: 1.2rem;
+    }
+    .edu-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+    .edu-degree-icon {
+      font-size: 1.6rem;
+      color: var(--accent);
+      margin-bottom: 0.2rem;
+    }
+    .edu-degree {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+    .edu-school {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    .edu-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 0.3rem;
+    }
+    .edu-highlight {
+      color: var(--accent);
+      font-weight: 500;
+    }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+    }
+    @media (max-width: 820px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-info-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-detail-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: var(--bg-card);
+      padding: 1.2rem 1.6rem;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-light);
+    }
+    .contact-detail-icon {
+      font-size: 1.8rem;
+      color: var(--accent);
+    }
+    .contact-detail-info h4 {
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .contact-detail-info p a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .contact-detail-info p a:hover {
+      color: var(--accent);
+    }
+
+    .contact-form {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    .form-group {
+      position: relative;
+    }
+    .form-input {
+      width: 100%;
+      padding: 1rem 1rem 1rem 2.8rem;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      color: var(--text-primary);
+      font-size: 1rem;
+      outline: none;
+      transition: var(--transition);
+      font-family: var(--font-body);
+    }
+    .form-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-glow);
+    }
+    .form-label {
+      position: absolute;
+      left: 2.8rem;
+      top: 1rem;
+      color: var(--text-muted);
+      pointer-events: none;
+      transition: var(--transition);
+      font-size: 0.95rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .form-input:focus+.form-label,
+    .form-input:not(:placeholder-shown)+.form-label {
+      top: -0.6rem;
+      left: 1rem;
+      font-size: 0.75rem;
+      background: var(--bg-card);
+      padding: 0 0.4rem;
+      color: var(--accent);
+    }
+    textarea.form-input {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      position: relative;
+      z-index: 2;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 3rem 1rem 1.5rem;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+    }
+    .footer-logo span {
+      color: var(--accent);
+    }
+    .footer-tagline {
+      color: var(--text-secondary);
+      margin-bottom: 1rem;
+    }
+    .footer-socials {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem 1.8rem;
+      margin-bottom: 1.2rem;
+    }
+    .footer-nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: var(--transition);
+    }
+    .footer-nav a:hover {
+      color: var(--accent);
+    }
+    .footer-copyright {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .floating-contact-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 1.5rem;
+      z-index: 999;
+      background: var(--accent);
+      color: #0b0d15;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      box-shadow: 0 8px 30px var(--accent-glow);
+      transition: var(--transition);
+      text-decoration: none;
+    }
+    .floating-contact-btn:hover {
+      transform: scale(1.08);
+    }
+
+    /* ---------- MODAL ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .modal.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .modal-content {
+      background: var(--bg-secondary);
+      max-width: 600px;
+      width: 100%;
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid var(--border-light);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: transparent;
+      border: none;
+      font-size: 1.6rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+    }
+    .modal-header {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .modal-icon-wrap {
+      font-size: 2.4rem;
+      color: var(--accent);
+    }
+    .modal-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.4rem;
+    }
+    .modal-subtitle {
+      color: var(--text-secondary);
+    }
+    .modal-section {
+      margin-top: 1.4rem;
+    }
+    .modal-section h4 {
+      font-weight: 600;
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.3rem;
+    }
+    .modal-body {
+      color: var(--text-secondary);
+    }
+
+    /* ---------- UTILITY ---------- */
+    .text-center {
+      text-align: center;
+    }
+    .mt-1 {
+      margin-top: 1rem;
+    }
+
+    /* responsive tweaks */
+    @media (max-width: 480px) {
+      .hero-stats .stat-chip {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.8rem;
+      }
+      .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.8rem;
+      }
+      .project-card {
+        padding: 1.2rem;
+      }
+      .contact-form {
+        padding: 1.2rem;
+      }
+      .modal-content {
+        padding: 1.2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ░░░ NOISE OVERLAY ░░░ -->
+  <!-- NOISE OVERLAY -->
   <div class="noise-overlay"></div>
 
-  <!-- ░░░ VANTA BACKGROUND ░░░ -->
+  <!-- VANTA BG -->
   <div id="vanta-bg"></div>
 
-  <!-- ░░░ CURSOR FOLLOWER ░░░ -->
+  <!-- CURSOR (desktop) -->
   <div class="cursor-dot" id="cursor-dot"></div>
   <div class="cursor-ring" id="cursor-ring"></div>
 
-  <!-- ========================================
-       HEADER / NAV
-  ======================================== -->
+  <!-- ===== HEADER ===== -->
   <header id="main-header">
     <div class="nav-container">
-      <a href="#hero" class="logo" id="nav-logo">VimalRaj<span>.dev</span></a>
-
-      <nav class="nav-links" id="navigation-menu" role="navigation" aria-label="Main Navigation">
-        <a href="#hero"   class="nav-item active" id="nav-home"><i class="bi bi-house-door"></i> Home</a>
-        <a href="#about"  class="nav-item" id="nav-about"><i class="bi bi-person"></i> About</a>
-        <a href="#skills" class="nav-item" id="nav-skills"><i class="bi bi-lightning-charge"></i> Skills</a>
-        <a href="#experience" class="nav-item" id="nav-experience"><i class="bi bi-briefcase"></i> Experience</a>
-        <a href="#projects" class="nav-item" id="nav-projects"><i class="bi bi-grid-1x2"></i> Projects</a>
-        <a href="#contact" class="nav-item" id="nav-contact"><i class="bi bi-send"></i> Contact</a>
+      <a href="#hero" class="logo">VimalRaj<span>.dev</span></a>
+      <nav class="nav-links" id="navigation-menu" role="navigation">
+        <a href="#hero" class="nav-item active"><i class="bi bi-house-door"></i> Home</a>
+        <a href="#about" class="nav-item"><i class="bi bi-person"></i> About</a>
+        <a href="#skills" class="nav-item"><i class="bi bi-lightning-charge"></i> Skills</a>
+        <a href="#experience" class="nav-item"><i class="bi bi-briefcase"></i> Experience</a>
+        <a href="#projects" class="nav-item"><i class="bi bi-grid-1x2"></i> Projects</a>
+        <a href="#contact" class="nav-item"><i class="bi bi-send"></i> Contact</a>
       </nav>
-
       <div class="nav-actions">
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
           <i class="bi bi-sun-fill" id="theme-icon"></i>
         </button>
-        <div class="hamburger" id="nav-hamburger" aria-label="Open Menu">
+        <div class="hamburger" id="nav-hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- ========================================
-       HERO SECTION
-  ======================================== -->
+  <!-- ===== HERO ===== -->
   <section id="hero">
     <div class="hero-grid">
       <div class="hero-content">
-        <div class="hero-badge">
-          <i class="bi bi-stars"></i>
-          <span>Open to Full-Time Opportunities</span>
-        </div>
-
+        <div class="hero-badge"><i class="bi bi-stars"></i><span>Open to Full-Time Opportunities</span></div>
         <span class="hero-greeting">Hello World, I'm</span>
-        <h1 class="hero-name" id="user-display-name">Sri Vimal Raj S</h1>
-
-        <div class="hero-title-type">
-          I'm a <span id="typed-text"></span><span class="typed-cursor">|</span>
-        </div>
-
-        <p class="hero-desc">
-          An aspiring software engineer with a passion for constructing modular web applications, crafting fluid interfaces, and solving real-world challenges through clean, maintainable code.
-        </p>
-
+        <h1 class="hero-name">Sri Vimal Raj S</h1>
+        <div class="hero-title-type">I'm a <span id="typed-text"></span><span class="typed-cursor">|</span></div>
+        <p class="hero-desc">An aspiring software engineer with a passion for constructing modular web applications, crafting fluid interfaces, and solving real-world challenges through clean, maintainable code.</p>
         <div class="hero-cta">
-          <a href="#projects" class="btn btn-primary" id="btn-view-projects">
-            <i class="bi bi-grid-1x2-fill"></i> Explore Projects
-          </a>
-          <a href="vimalrajnew.pdf" target="_blank" class="btn btn-secondary" id="btn-download-resume" download>
-            <i class="bi bi-download"></i> Download Resume
-          </a>
+          <a href="#projects" class="btn btn-primary"><i class="bi bi-grid-1x2-fill"></i> Explore Projects</a>
+          <a href="#" class="btn btn-secondary" download><i class="bi bi-download"></i> Download Resume</a>
         </div>
-
         <div class="hero-socials">
-          <a href="https://github.com/vimalraj45" target="_blank" class="social-link" aria-label="GitHub Profile">
-            <i class="bi bi-github"></i>
-          </a>
-          <a href="https://linkedin.com/in/vimalraj" target="_blank" class="social-link" aria-label="LinkedIn Profile">
-            <i class="bi bi-linkedin"></i>
-          </a>
-          <a href="mailto:vimalraj5207@gmail.com" class="social-link" aria-label="Email Address">
-            <i class="bi bi-envelope-fill"></i>
-          </a>
-          <a href="tel:+918807099288" class="social-link" aria-label="Phone">
-            <i class="bi bi-telephone-fill"></i>
-          </a>
+          <a href="#" class="social-link"><i class="bi bi-github"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-envelope-fill"></i></a>
+          <a href="#" class="social-link"><i class="bi bi-telephone-fill"></i></a>
         </div>
       </div>
-
       <div class="hero-visual">
         <div class="avatar-ring-outer">
-          <div class="avatar-ring-mid">
-            <div class="blob-container">
-              <div class="blob-avatar-text">VR</div>
-            </div>
-          </div>
+          <div class="avatar-ring-mid"><div class="blob-container"><div class="blob-avatar-text">VR</div></div></div>
         </div>
         <div class="hero-stats">
-          <div class="stat-chip">
-            <i class="bi bi-collection-fill"></i>
-            <span><strong>13+</strong> Projects</span>
-          </div>
-          <div class="stat-chip">
-            <i class="bi bi-award-fill"></i>
-            <span><strong>4</strong> NPTEL Certs</span>
-          </div>
-          <div class="stat-chip">
-            <i class="bi bi-building-fill"></i>
-            <span><strong>2</strong> Internships</span>
-          </div>
+          <div class="stat-chip"><i class="bi bi-collection-fill"></i><span><strong>13+</strong> Projects</span></div>
+          <div class="stat-chip"><i class="bi bi-award-fill"></i><span><strong>4</strong> NPTEL Certs</span></div>
+          <div class="stat-chip"><i class="bi bi-building-fill"></i><span><strong>2</strong> Internships</span></div>
         </div>
       </div>
     </div>
-
-    <!-- Scroll indicator -->
     <div class="scroll-indicator" data-aos="fade-up" data-aos-delay="900">
       <span>Scroll Down</span>
       <div class="scroll-line"></div>
     </div>
   </section>
 
-  <!-- ========================================
-       ABOUT SECTION
-  ======================================== -->
+  <!-- ===== ABOUT ===== -->
   <section id="about">
     <div class="section-title-wrap" data-aos="fade-up">
       <span class="section-tagline"><i class="bi bi-person-circle"></i> Introduction</span>
       <h2 class="section-title">About Me</h2>
       <p class="section-subtitle">A curious builder who turns ideas into digital reality</p>
     </div>
-
     <div class="about-grid">
-      <div class="about-card" data-aos="fade-right" data-aos-delay="100">
-        <div class="about-icon-wrap">
-          <i class="bi bi-person-workspace"></i>
-        </div>
+      <div class="about-card" data-aos="fade-right">
+        <div class="about-icon-wrap"><i class="bi bi-person-workspace"></i></div>
         <h3 class="about-objective-title">Career Objective</h3>
-        <p class="about-objective-text">
-          To start my professional career as an aspiring Software Developer, applying technical skills and a passion for engineering to design and build reliable, scalable, and secure web applications while continuously learning and growing in a global technology environment.
-        </p>
-        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">
-          Currently pursuing my Bachelor's degree in Computer Science, I focus heavily on full-stack web architectures. I love bridging the gap between database designs and smooth, modern user experiences.
-        </p>
+        <p class="about-objective-text">To start my professional career as an aspiring Software Developer, applying technical skills and a passion for engineering to design and build reliable, scalable, and secure web applications while continuously learning and growing in a global technology environment.</p>
+        <p style="color: var(--text-secondary); font-size: 1.05rem; line-height: 1.8;">Currently pursuing my Bachelor's degree in Computer Science, I focus heavily on full-stack web architectures. I love bridging the gap between database designs and smooth, modern user experiences.</p>
       </div>
-
       <div class="about-info-grid">
-        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="100">
-          <i class="bi bi-mortarboard-fill about-info-icon"></i>
-          <h4>Education</h4>
-          <p>B.E. Computer Science</p>
-          <span>Sona College of Tech (2023–27)</span>
-        </div>
-        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="200">
-          <i class="bi bi-graph-up-arrow about-info-icon"></i>
-          <h4>CGPA</h4>
-          <p>7.45 / 10</p>
-          <span>Current: 4th Year</span>
-        </div>
-        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="300">
-          <i class="bi bi-geo-alt-fill about-info-icon"></i>
-          <h4>Location</h4>
-          <p>Salem, Tamil Nadu</p>
-          <span>India</span>
-        </div>
-        <div class="about-card info-item" data-aos="flip-up" data-aos-delay="400">
-          <i class="bi bi-patch-check-fill about-info-icon"></i>
-          <h4>Certificates</h4>
-          <p>4 NPTEL Credentials</p>
-          <span>AI &amp; Computing Specs</span>
-        </div>
+        <div class="about-card info-item" data-aos="flip-up"><i class="bi bi-mortarboard-fill about-info-icon"></i><h4>Education</h4><p>B.E. Computer Science</p><span>Sona College of Tech (2023–27)</span></div>
+        <div class="about-card info-item" data-aos="flip-up"><i class="bi bi-graph-up-arrow about-info-icon"></i><h4>CGPA</h4><p>7.45 / 10</p><span>Current: 4th Year</span></div>
+        <div class="about-card info-item" data-aos="flip-up"><i class="bi bi-geo-alt-fill about-info-icon"></i><h4>Location</h4><p>Salem, Tamil Nadu</p><span>India</span></div>
+        <div class="about-card info-item" data-aos="flip-up"><i class="bi bi-patch-check-fill about-info-icon"></i><h4>Certificates</h4><p>4 NPTEL Credentials</p><span>AI &amp; Computing Specs</span></div>
       </div>
     </div>
   </section>
 
-  <!-- ========================================
-       SKILLS SECTION
-  ======================================== -->
+  <!-- ===== SKILLS ===== -->
   <section id="skills">
     <div class="section-title-wrap" data-aos="fade-up">
       <span class="section-tagline"><i class="bi bi-lightning-charge-fill"></i> My Arsenal</span>
       <h2 class="section-title">Technical Expertise</h2>
       <p class="section-subtitle">Technologies I wield to bring ideas to life</p>
     </div>
-
     <div class="skills-grid">
       <!-- Frontend -->
-      <div class="skills-category" data-aos="zoom-in" data-aos-delay="100">
-        <h3 class="skills-category-title">
-          <i class="bi bi-layout-text-window-reverse"></i>
-          Frontend Technologies
-        </h3>
+      <div class="skills-category" data-aos="zoom-in">
+        <h3 class="skills-category-title"><i class="bi bi-layout-text-window-reverse"></i> Frontend</h3>
         <div class="skill-list">
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-code-slash"></i> Vue.js / Vuex / Pinia</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-code-slash"></i> React.js</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-filetype-html"></i> HTML5 / CSS3 (Vanilla)</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-bootstrap"></i> Bootstrap 5 / UIkit</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
-          </div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-code-slash"></i> Vue.js / Pinia</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-code-slash"></i> React.js</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-filetype-html"></i> HTML5 / CSS3</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-bootstrap"></i> Bootstrap 5</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div></div>
         </div>
       </div>
-
       <!-- Backend -->
-      <div class="skills-category" data-aos="zoom-in" data-aos-delay="200">
-        <h3 class="skills-category-title">
-          <i class="bi bi-server"></i>
-          Backend &amp; Databases
-        </h3>
+      <div class="skills-category" data-aos="zoom-in">
+        <h3 class="skills-category-title"><i class="bi bi-server"></i> Backend &amp; DB</h3>
         <div class="skill-list">
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-node-plus"></i> Express.js / Node.js / Fastify</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-filetype-java"></i> Java / Python / C</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-database-fill"></i> SQL (MySQL / PostgreSQL)</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-shield-lock"></i> OAuth 2.0 / Razorpay APIs</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="75"></div></div>
-          </div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-node-plus"></i> Express / Fastify</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-filetype-java"></i> Java / Python</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-database-fill"></i> SQL (MySQL / PG)</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-shield-lock"></i> OAuth 2.0 / Razorpay</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="75"></div></div></div>
         </div>
       </div>
-
-      <!-- Tools & DevOps -->
-      <div class="skills-category" data-aos="zoom-in" data-aos-delay="300">
-        <h3 class="skills-category-title">
-          <i class="bi bi-tools"></i>
-          Tools &amp; DevOps
-        </h3>
+      <!-- Tools -->
+      <div class="skills-category" data-aos="zoom-in">
+        <h3 class="skills-category-title"><i class="bi bi-tools"></i> Tools &amp; DevOps</h3>
         <div class="skill-list">
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-git"></i> Git / GitHub</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="88"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-boxes"></i> Docker Basics</span>
-              <span class="skill-percentage">Beginner</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="65"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-cpu"></i> REST API Design</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-cloud-check-fill"></i> Agile / Scrum Methodology</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div>
-          </div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-git"></i> Git / GitHub</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="88"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-boxes"></i> Docker Basics</span><span class="skill-percentage">Beginner</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="65"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-cpu"></i> REST API Design</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="90"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-cloud-check-fill"></i> Agile / Scrum</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="80"></div></div></div>
         </div>
       </div>
-
-      <!-- Extras -->
-      <div class="skills-category" data-aos="zoom-in" data-aos-delay="400">
-        <h3 class="skills-category-title">
-          <i class="bi bi-magic"></i>
-          Animation &amp; UI
-        </h3>
+      <!-- Animation -->
+      <div class="skills-category" data-aos="zoom-in">
+        <h3 class="skills-category-title"><i class="bi bi-magic"></i> Animation &amp; UI</h3>
         <div class="skill-list">
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-play-circle-fill"></i> CSS Animations / AOS</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="82"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-window-stack"></i> AOS / Framer Motion</span>
-              <span class="skill-percentage">Intermediate</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="78"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-eye-fill"></i> UI/UX Principles</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div>
-          </div>
-          <div class="skill-item">
-            <div class="skill-item-info">
-              <span class="skill-name"><i class="bi bi-phone"></i> Responsive Design</span>
-              <span class="skill-percentage">Proficient</span>
-            </div>
-            <div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div>
-          </div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-play-circle-fill"></i> CSS Animations / AOS</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="82"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-window-stack"></i> AOS / Framer Motion</span><span class="skill-percentage">Intermediate</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="78"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-eye-fill"></i> UI/UX Principles</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="85"></div></div></div>
+          <div class="skill-item"><div class="skill-item-info"><span class="skill-name"><i class="bi bi-phone"></i> Responsive Design</span><span class="skill-percentage">Proficient</span></div><div class="skill-bar-container"><div class="skill-bar-progress" data-percent="95"></div></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================================
-       EXPERIENCE SECTION
-  ======================================== -->
+  <!-- ===== EXPERIENCE ===== -->
   <section id="experience">
     <div class="section-title-wrap" data-aos="fade-up">
       <span class="section-tagline"><i class="bi bi-briefcase-fill"></i> My Career Journey</span>
       <h2 class="section-title">Internship Experience</h2>
       <p class="section-subtitle">Building real-world skills through hands-on internships</p>
     </div>
-
     <div class="timeline">
-      <div class="timeline-item" data-aos="fade-up" data-aos-delay="100">
-        <div class="timeline-dot">
-          <i class="bi bi-building-fill"></i>
-        </div>
+      <div class="timeline-item" data-aos="fade-up">
+        <div class="timeline-dot"><i class="bi bi-building-fill"></i></div>
         <div class="timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Frontend Developer Intern</h3>
-              <div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Spirilia (Pre-Incubation at IIT Madras)</div>
-            </div>
-            <span class="timeline-date"><i class="bi bi-calendar3"></i> Sep 2022 – Dec 2025</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Designed and integrated modular, reusable front-end interface components utilizing Vue.js, Vuex, and Pinia.</li>
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Connected client-side features with microservice RESTful APIs via Axios, handling secure asymmetric state mapping.</li>
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Collaborated in Agile sprints alongside cross-functional engineering teams to roll out stable web features.</li>
-          </ul>
-          <div class="timeline-tech-tags">
-            <span class="tech-tag"><i class="bi bi-code-square"></i> Vue.js</span>
-            <span class="tech-tag"><i class="bi bi-code-square"></i> Vuex</span>
-            <span class="tech-tag"><i class="bi bi-code-square"></i> Axios</span>
-          </div>
+          <div class="timeline-header"><div><h3 class="timeline-role">Frontend Developer Intern</h3><div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Spirilia (IIT Madras)</div></div><span class="timeline-date"><i class="bi bi-calendar3"></i> Sep 2022 – Dec 2025</span></div>
+          <ul class="timeline-bullets"><li><i class="bi bi-arrow-right-circle-fill"></i> Designed modular Vue.js components with Vuex/Pinia.</li><li><i class="bi bi-arrow-right-circle-fill"></i> Integrated RESTful APIs via Axios.</li><li><i class="bi bi-arrow-right-circle-fill"></i> Collaborated in Agile sprints.</li></ul>
+          <div class="timeline-tech-tags"><span class="tech-tag">Vue.js</span><span class="tech-tag">Vuex</span><span class="tech-tag">Axios</span></div>
         </div>
       </div>
-
-      <div class="timeline-item" data-aos="fade-up" data-aos-delay="200">
-        <div class="timeline-dot">
-          <i class="bi bi-pc-display-horizontal"></i>
-        </div>
+      <div class="timeline-item" data-aos="fade-up">
+        <div class="timeline-dot"><i class="bi bi-pc-display-horizontal"></i></div>
         <div class="timeline-card">
-          <div class="timeline-header">
-            <div>
-              <h3 class="timeline-role">Full-Stack Developer Intern</h3>
-              <div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Redmind Tech</div>
-            </div>
-            <span class="timeline-date"><i class="bi bi-calendar3"></i> Jun 2025</span>
-          </div>
-          <ul class="timeline-bullets">
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Built core server-side logic and schema hooks for database integration using PHP and relational databases.</li>
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Created interactive user dashboard interfaces implementing HTML5, CSS3, and dynamic vanilla JavaScript features.</li>
-            <li><i class="bi bi-arrow-right-circle-fill"></i> Optimized page layout styles, cutting load times and improving mobile styling responses.</li>
-          </ul>
-          <div class="timeline-tech-tags">
-            <span class="tech-tag"><i class="bi bi-code-square"></i> PHP</span>
-            <span class="tech-tag"><i class="bi bi-code-square"></i> MySQL</span>
-            <span class="tech-tag"><i class="bi bi-code-square"></i> JavaScript</span>
-          </div>
+          <div class="timeline-header"><div><h3 class="timeline-role">Full-Stack Developer Intern</h3><div class="timeline-company"><i class="bi bi-geo-alt-fill"></i> Redmind Tech</div></div><span class="timeline-date"><i class="bi bi-calendar3"></i> Jun 2025</span></div>
+          <ul class="timeline-bullets"><li><i class="bi bi-arrow-right-circle-fill"></i> Built server-side logic with PHP &amp; MySQL.</li><li><i class="bi bi-arrow-right-circle-fill"></i> Created interactive dashboards with vanilla JS.</li><li><i class="bi bi-arrow-right-circle-fill"></i> Optimized mobile responsiveness.</li></ul>
+          <div class="timeline-tech-tags"><span class="tech-tag">PHP</span><span class="tech-tag">MySQL</span><span class="tech-tag">JavaScript</span></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================================
-       PROJECTS SECTION
-  ======================================== -->
+  <!-- ===== PROJECTS ===== -->
   <section id="projects">
     <div class="section-title-wrap" data-aos="fade-up">
       <span class="section-tagline"><i class="bi bi-rocket-takeoff-fill"></i> My Creations</span>
       <h2 class="section-title">Featured Projects</h2>
       <p class="section-subtitle">Real problems solved with real code</p>
     </div>
-
-    <div class="filter-tabs" data-aos="fade-up" data-aos-delay="100">
+    <div class="filter-tabs" data-aos="fade-up">
       <button class="filter-btn active" data-filter="all"><i class="bi bi-grid-3x3-gap-fill"></i> All Projects</button>
       <button class="filter-btn" data-filter="freelance"><i class="bi bi-person-badge-fill"></i> Freelance</button>
       <button class="filter-btn" data-filter="other"><i class="bi bi-layers-fill"></i> Other Projects</button>
     </div>
-
-    <div class="projects-grid">
-
-      <!-- FREELANCE PROJECTS -->
-
-      <!-- Freelance 1: Edwyna (EventHub) -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="100">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-calendar-event-fill"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">EventHub (Edwyna)</h3>
-          <p class="project-description">A comprehensive event planning and coordination platform featuring interactive announcers, schedule mapping, organizer dashboards, and participant check-ins.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="edwyna">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Freelance 2: EasanMart -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="150">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-cart4"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">EasanMart Catalog</h3>
-          <p class="project-description">A grocery single-page catalog application for Easan Supermarket. Embeds a responsive search-and-filter inventory linked to Google Sheets APIs for simplified stock management.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">Bootstrap 5</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="easanmart">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Freelance 3: Dr. Kanak's Clinic -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="200">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-heart-pulse-fill"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">Dr. Kanak's Speciality Clinic</h3>
-          <p class="project-description">A clinic portal for patients with scheduling calendars, digital prescriptions, Razorpay payment checkouts, and service-worker push notifications for appointment reminders.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Fastify</span>
-            <span class="tech-tag">PostgreSQL</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="drkankas">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Freelance 4: Sri Mayil Builders -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="250">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-buildings-fill"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">Sri Mayil Builders</h3>
-          <p class="project-description">A web portal for a construction firm with scroll animations, residential showcase portfolios, and a client-facing Vastu-compliant building cost estimator.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">CSS Animations</span>
-            <span class="tech-tag">Scroll Effects</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="smb">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Freelance 5: CRM System for Lead Generation -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="300">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-envelope-check-fill"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">CRM System for Lead Generation</h3>
-          <p class="project-description">A 7-stage AI-powered lead qualification pipeline featuring IMAP ingestion, Groq LLM extraction, Serper URL ranking, Playwright scraping, Mistral scoring, and Google Sheets storage.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Groq API</span>
-            <span class="tech-tag">Playwright</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="crm">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Freelance 6: AADHIRA Hackathon -->
-      <article class="project-card" data-category="freelance" data-aos="fade-up" data-aos-delay="350">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-trophy-fill"></i></div>
-          <span class="project-badge badge-freelance"><i class="bi bi-person-badge-fill"></i> FREELANCE</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">AADHIRA Hackathon Portal</h3>
-          <p class="project-description">Streamlined hackathon coordination database built with Fastify and Neon serverless PostgreSQL. Manages multi-member team registrations, college affiliations, and automated communication pipelines.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">Fastify</span>
-            <span class="tech-tag">PostgreSQL</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="aadhira">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Product 2: Sprintora AI -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="150">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-robot"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-layers-fill"></i> PRODUCT</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">Sprintora AI Workspace</h3>
-          <p class="project-description">An AI-assisted agile workspace powered by Llama-3.3 (via Groq API). Auto-transforms project requirements into tasks, estimates work hours, maps developer roles, and provides visual Kanban boards with secure multi-tenant isolation.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Fastify</span>
-            <span class="tech-tag">Llama-3.3</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="sprintora">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- OTHER PROJECTS -->
-
-      <!-- Other 1: THREADS '26 -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="100">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-ticket-perforated-fill"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-layers-fill"></i> EVENT</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">THREADS '26 Event Portal</h3>
-          <p class="project-description">Official ticketing and registration engine for the THREADS '26 symposium. Built with Fastify, PostgreSQL, and Upstash Redis—features real-time visitor tracking, automated email dispatchers, PDFKit ticket generators, and QR-code check-in verification.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">Fastify</span>
-            <span class="tech-tag">Upstash Redis</span>
-            <span class="tech-tag">PDFKit</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="threads26">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Other 2: VSChats -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="150">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-chat-dots-fill"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-layers-fill"></i> CHATS</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">VSChats</h3>
-          <p class="project-description">Real-time chat messaging application using Socket.io and Node.js for instant multi-user messaging sync with persistent message rooms and user presence indicators.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Express.js</span>
-            <span class="tech-tag">Socket.io</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="vschats">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Other 3: CryptoSign -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="200">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-pen-fill"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-shield-lock-fill"></i> SECURITY</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">CryptoSign</h3>
-          <p class="project-description">Decentralized signature application for secure document verification and identity claims using WebCrypto APIs for tamper-proof signing and validation entirely on the client-side.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">JavaScript</span>
-            <span class="tech-tag">WebCrypto</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="cryptosign">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Other 4: Hybrid Crypto -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="250">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-lock-fill"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-shield-lock-fill"></i> ENCRYPTION</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">Hybrid Crypto</h3>
-          <p class="project-description">Client-side symmetric and asymmetric file encryption application for secure key exchange and document protection using RSA-OAEP and AES-GCM WebCrypto primitives.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">HTML5</span>
-            <span class="tech-tag">CSS3</span>
-            <span class="tech-tag">JavaScript</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="hybrid_crypto">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
-      <!-- Other 5: Sona R&D Portal -->
-      <article class="project-card" data-category="other" data-aos="fade-up" data-aos-delay="300">
-        <div class="project-card-header">
-          <div class="project-icon-wrapper"><i class="bi bi-book-fill"></i></div>
-          <span class="project-badge badge-other"><i class="bi bi-journal-code"></i> RESEARCH</span>
-        </div>
-        <div class="project-card-body">
-          <h3 class="project-title">Sona R&D Portal</h3>
-          <p class="project-description">A centralized research management system for Sona College of Technology (Seed Money Project). Features role-based access control, research publication tracking, and database-driven workflows following SDLC guidelines.</p>
-          <div class="project-tech-list">
-            <span class="tech-tag">React.js</span>
-            <span class="tech-tag">Spring Boot</span>
-            <span class="tech-tag">MySQL</span>
-          </div>
-        </div>
-        <div class="project-card-footer">
-          <a href="#" class="project-link view-project-details" data-project="sona_rd">
-            <i class="bi bi-eye-fill"></i> Learn More
-          </a>
-          <a href="#" class="project-link-icon"><i class="bi bi-github"></i></a>
-        </div>
-      </article>
-
+    <div class="projects-grid" id="projects-grid">
+      <!-- projects injected by JS -->
     </div>
   </section>
 
-  <!-- ========================================
-       EDUCATION & CERTIFICATIONS
-  ======================================== -->
+  <!-- ===== EDUCATION & CERT ===== -->
   <section id="education-certifications">
     <div class="cert-edu-grid">
-      <!-- Certifications -->
       <div data-aos="slide-right">
-        <div class="section-title-wrap" style="text-align: left; margin-bottom: 2.5rem;">
+        <div class="section-title-wrap" style="text-align:left;margin-bottom:2.5rem;">
           <span class="section-tagline"><i class="bi bi-patch-check-fill"></i> Validation</span>
           <h2 class="section-title">Certifications</h2>
         </div>
-
         <div class="certifications-wrap">
-          <div class="cert-card" data-aos="flip-down" data-aos-delay="100">
-            <div class="cert-icon"><i class="bi bi-cpu-fill"></i></div>
-            <div class="cert-info">
-              <h3>NPTEL: Machine Learning</h3>
-              <p><i class="bi bi-check2-circle"></i> Specialization in algorithms and computational theory</p>
-            </div>
-          </div>
-          <div class="cert-card" data-aos="flip-down" data-aos-delay="200">
-            <div class="cert-icon"><i class="bi bi-cloud-fill"></i></div>
-            <div class="cert-info">
-              <h3>NPTEL: Cloud Computing</h3>
-              <p><i class="bi bi-check2-circle"></i> Scalable models, deployments, and cloud architectures</p>
-            </div>
-          </div>
-          <div class="cert-card" data-aos="flip-down" data-aos-delay="300">
-            <div class="cert-icon"><i class="bi bi-lightbulb-fill"></i></div>
-            <div class="cert-info">
-              <h3>NPTEL: Design Thinking</h3>
-              <p><i class="bi bi-check2-circle"></i> Product blueprint strategies and user-centric architecture</p>
-            </div>
-          </div>
-          <div class="cert-card" data-aos="flip-down" data-aos-delay="400">
-            <div class="cert-icon"><i class="bi bi-diagram-3-fill"></i></div>
-            <div class="cert-info">
-              <h3>NPTEL: Data Structures</h3>
-              <p><i class="bi bi-check2-circle"></i> Advanced algorithms and programming fundamentals</p>
-            </div>
-          </div>
+          <div class="cert-card" data-aos="flip-down"><div class="cert-icon"><i class="bi bi-cpu-fill"></i></div><div class="cert-info"><h3>NPTEL: Machine Learning</h3><p><i class="bi bi-check2-circle"></i> Specialization in algorithms</p></div></div>
+          <div class="cert-card" data-aos="flip-down"><div class="cert-icon"><i class="bi bi-cloud-fill"></i></div><div class="cert-info"><h3>NPTEL: Cloud Computing</h3><p><i class="bi bi-check2-circle"></i> Scalable architectures</p></div></div>
+          <div class="cert-card" data-aos="flip-down"><div class="cert-icon"><i class="bi bi-lightbulb-fill"></i></div><div class="cert-info"><h3>NPTEL: Design Thinking</h3><p><i class="bi bi-check2-circle"></i> User-centric product design</p></div></div>
+          <div class="cert-card" data-aos="flip-down"><div class="cert-icon"><i class="bi bi-diagram-3-fill"></i></div><div class="cert-info"><h3>NPTEL: Data Structures</h3><p><i class="bi bi-check2-circle"></i> Advanced algorithms</p></div></div>
         </div>
       </div>
-
-      <!-- Education -->
       <div data-aos="slide-left">
-        <div class="section-title-wrap" style="text-align: left; margin-bottom: 2.5rem;">
+        <div class="section-title-wrap" style="text-align:left;margin-bottom:2.5rem;">
           <span class="section-tagline"><i class="bi bi-mortarboard-fill"></i> Academic Foundation</span>
           <h2 class="section-title">Education</h2>
         </div>
-
         <div class="edu-card">
-          <div class="edu-item">
-            <div class="edu-degree-icon"><i class="bi bi-mortarboard-fill"></i></div>
-            <h3 class="edu-degree">Bachelor of Engineering (B.E.)</h3>
-            <p class="edu-school">Computer Science and Engineering</p>
-            <div class="edu-meta">
-              <span><i class="bi bi-building"></i> Sona College of Technology, Salem</span>
-              <span class="edu-highlight"><i class="bi bi-graph-up-arrow"></i> CGPA: 7.45 — 4th Year</span>
-            </div>
-          </div>
-
-          <div class="edu-item">
-            <div class="edu-degree-icon"><i class="bi bi-book-fill"></i></div>
-            <h3 class="edu-degree">Higher Secondary Education (HSC)</h3>
-            <p class="edu-school">Mathematics &amp; Computer Science</p>
-            <div class="edu-meta">
-              <span><i class="bi bi-building"></i> Jedarpalyam Govt. Hr. Sec. School</span>
-              <span class="edu-highlight"><i class="bi bi-star-fill"></i> Score: 89%</span>
-            </div>
-          </div>
+          <div class="edu-item"><div class="edu-degree-icon"><i class="bi bi-mortarboard-fill"></i></div><h3 class="edu-degree">Bachelor of Engineering (B.E.)</h3><p class="edu-school">Computer Science and Engineering</p><div class="edu-meta"><span><i class="bi bi-building"></i> Sona College of Tech, Salem</span><span class="edu-highlight"><i class="bi bi-graph-up-arrow"></i> CGPA: 7.45 — 4th Year</span></div></div>
+          <div class="edu-item"><div class="edu-degree-icon"><i class="bi bi-book-fill"></i></div><h3 class="edu-degree">Higher Secondary Education (HSC)</h3><p class="edu-school">Mathematics &amp; Computer Science</p><div class="edu-meta"><span><i class="bi bi-building"></i> Jedarpalyam Govt. Hr. Sec. School</span><span class="edu-highlight"><i class="bi bi-star-fill"></i> Score: 89%</span></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ========================================
-       CONTACT SECTION
-  ======================================== -->
+  <!-- ===== CONTACT ===== -->
   <section id="contact">
     <div class="section-title-wrap" data-aos="fade-up">
       <span class="section-tagline"><i class="bi bi-send-fill"></i> Get In Touch</span>
       <h2 class="section-title">Let's Connect</h2>
       <p class="section-subtitle">Have a project in mind? Let's build something amazing together.</p>
     </div>
-
     <div class="contact-grid">
       <div class="contact-info-wrap">
-        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="100">
-          <div class="contact-detail-icon"><i class="bi bi-envelope-fill"></i></div>
-          <div class="contact-detail-info">
-            <h4>Email Me</h4>
-            <p><a href="mailto:vimalraj5207@gmail.com">vimalraj5207@gmail.com</a></p>
-          </div>
-        </div>
-
-        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="200">
-          <div class="contact-detail-icon"><i class="bi bi-telephone-fill"></i></div>
-          <div class="contact-detail-info">
-            <h4>Call Me</h4>
-            <p><a href="tel:+918807099288">+91 8807099288</a></p>
-          </div>
-        </div>
-
-        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="300">
-          <div class="contact-detail-icon"><i class="bi bi-github"></i></div>
-          <div class="contact-detail-info">
-            <h4>GitHub</h4>
-            <p><a href="https://github.com/vimalraj45" target="_blank">github.com/vimalraj45</a></p>
-          </div>
-        </div>
-
-        <div class="contact-detail-card" data-aos="slide-right" data-aos-delay="400">
-          <div class="contact-detail-icon"><i class="bi bi-linkedin"></i></div>
-          <div class="contact-detail-info">
-            <h4>LinkedIn</h4>
-            <p><a href="https://linkedin.com/in/vimalraj" target="_blank">linkedin.com/in/vimalraj</a></p>
-          </div>
-        </div>
+        <div class="contact-detail-card" data-aos="slide-right"><div class="contact-detail-icon"><i class="bi bi-envelope-fill"></i></div><div class="contact-detail-info"><h4>Email Me</h4><p><a href="mailto:vimalraj5207@gmail.com">vimalraj5207@gmail.com</a></p></div></div>
+        <div class="contact-detail-card" data-aos="slide-right"><div class="contact-detail-icon"><i class="bi bi-telephone-fill"></i></div><div class="contact-detail-info"><h4>Call Me</h4><p><a href="tel:+918807099288">+91 8807099288</a></p></div></div>
+        <div class="contact-detail-card" data-aos="slide-right"><div class="contact-detail-icon"><i class="bi bi-github"></i></div><div class="contact-detail-info"><h4>GitHub</h4><p><a href="#">github.com/vimalraj45</a></p></div></div>
+        <div class="contact-detail-card" data-aos="slide-right"><div class="contact-detail-icon"><i class="bi bi-linkedin"></i></div><div class="contact-detail-info"><h4>LinkedIn</h4><p><a href="#">linkedin.com/in/vimalraj</a></p></div></div>
       </div>
-
-      <form class="contact-form" id="contact-form-el" action="#" method="POST" onsubmit="event.preventDefault(); handleFormSubmit();" data-aos="zoom-in-up" data-aos-delay="200">
-        <div class="form-group">
-          <input type="text" id="contact-name" class="form-input" placeholder=" " required>
-          <label for="contact-name" class="form-label"><i class="bi bi-person-fill"></i> Your Name</label>
-        </div>
-        <div class="form-group">
-          <input type="email" id="contact-email" class="form-input" placeholder=" " required>
-          <label for="contact-email" class="form-label"><i class="bi bi-envelope-fill"></i> Email Address</label>
-        </div>
-        <div class="form-group">
-          <input type="text" id="contact-subject" class="form-input" placeholder=" ">
-          <label for="contact-subject" class="form-label"><i class="bi bi-chat-square-text-fill"></i> Subject</label>
-        </div>
-        <div class="form-group">
-          <textarea id="contact-message" class="form-input" placeholder=" " required></textarea>
-          <label for="contact-message" class="form-label"><i class="bi bi-pencil-fill"></i> Message</label>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; border: none; justify-content: center; gap: 0.75rem;">
-          <i class="bi bi-send-fill"></i> Send Message
-        </button>
+      <form class="contact-form" id="contact-form-el" onsubmit="event.preventDefault(); alert('Message sent! (demo)');">
+        <div class="form-group"><input type="text" id="contact-name" class="form-input" placeholder=" " required><label class="form-label"><i class="bi bi-person-fill"></i> Your Name</label></div>
+        <div class="form-group"><input type="email" id="contact-email" class="form-input" placeholder=" " required><label class="form-label"><i class="bi bi-envelope-fill"></i> Email Address</label></div>
+        <div class="form-group"><input type="text" id="contact-subject" class="form-input" placeholder=" "><label class="form-label"><i class="bi bi-chat-square-text-fill"></i> Subject</label></div>
+        <div class="form-group"><textarea id="contact-message" class="form-input" placeholder=" " required></textarea><label class="form-label"><i class="bi bi-pencil-fill"></i> Message</label></div>
+        <button type="submit" class="btn btn-primary" style="width:100%;border:none;justify-content:center;gap:0.75rem;"><i class="bi bi-send-fill"></i> Send Message</button>
       </form>
     </div>
   </section>
 
-  <!-- ========================================
-       FOOTER
-  ======================================== -->
+  <!-- ===== FOOTER ===== -->
   <footer>
     <div class="footer-content">
       <div class="footer-logo">VimalRaj<span>.dev</span></div>
       <p class="footer-tagline">Crafting digital experiences with code &amp; creativity</p>
       <div class="footer-socials">
-        <a href="https://github.com/vimalraj45" target="_blank" class="social-link" aria-label="GitHub">
-          <i class="bi bi-github"></i>
-        </a>
-        <a href="https://linkedin.com/in/vimalraj" target="_blank" class="social-link" aria-label="LinkedIn">
-          <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="mailto:vimalraj5207@gmail.com" class="social-link" aria-label="Email">
-          <i class="bi bi-envelope-fill"></i>
-        </a>
-        <a href="tel:+918807099288" class="social-link" aria-label="Phone">
-          <i class="bi bi-telephone-fill"></i>
-        </a>
+        <a href="#" class="social-link"><i class="bi bi-github"></i></a>
+        <a href="#" class="social-link"><i class="bi bi-linkedin"></i></a>
+        <a href="#" class="social-link"><i class="bi bi-envelope-fill"></i></a>
+        <a href="#" class="social-link"><i class="bi bi-telephone-fill"></i></a>
       </div>
-      <div class="footer-nav">
-        <a href="#hero">Home</a>
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-      </div>
-      <p class="footer-copyright">&copy; 2026 Sri Vimal Raj S. Built with <i class="bi bi-heart-fill" style="color: #ef4444;"></i> using Vanilla CSS &amp; AOS.</p>
+      <div class="footer-nav"><a href="#hero">Home</a><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a></div>
+      <p class="footer-copyright">&copy; 2026 Sri Vimal Raj S. Built with <i class="bi bi-heart-fill" style="color:#ef4444;"></i> using Vanilla CSS &amp; AOS.</p>
     </div>
   </footer>
 
   <!-- Floating Contact Button -->
-  <a href="#contact" class="floating-contact-btn" id="floating-contact-trigger" aria-label="Contact Me">
-    <i class="bi bi-chat-dots-fill"></i>
-  </a>
+  <a href="#contact" class="floating-contact-btn" aria-label="Contact"><i class="bi bi-chat-dots-fill"></i></a>
 
-  <!-- ========================================
-       PROJECT MODAL
-  ======================================== -->
-  <div class="modal" id="project-modal" aria-hidden="true" role="dialog">
-    <div class="modal-content">
-      <button class="modal-close" aria-label="Close Modal">
-        <i class="bi bi-x-lg"></i>
-      </button>
-      <div class="modal-header">
-        <div class="modal-icon-wrap" id="modal-icon">
-          <i class="bi bi-code-slash"></i>
-        </div>
-        <div>
-          <h3 class="modal-title" id="modal-project-title">Project Title</h3>
-          <p class="modal-subtitle" id="modal-project-subtitle">Category</p>
-        </div>
-      </div>
-      <div class="modal-section">
-        <h4><i class="bi bi-exclamation-circle-fill"></i> Problem Solved</h4>
-        <p class="modal-body" id="modal-problem"></p>
-      </div>
-      <div class="modal-section">
-        <h4><i class="bi bi-lightbulb-fill"></i> My Solution</h4>
-        <p class="modal-body" id="modal-solution"></p>
-      </div>
-      <div class="modal-section">
-        <h4><i class="bi bi-tools"></i> Technologies Used</h4>
-        <div class="project-tech-list" id="modal-tech-list"></div>
-      </div>
-      <div style="text-align: right; margin-top: 1.5rem;">
-        <a href="#" class="btn btn-primary" target="_blank" id="modal-repo-link">
-          <i class="bi bi-github"></i> View Repository
-        </a>
-        <a href="#" class="btn btn-secondary" target="_blank" id="modal-live-link" style="display: none; margin-left: 0.5rem;">
-          <i class="bi bi-box-arrow-up-right"></i> Live Demo
-        </a>
-      </div>
-    </div>
-  </div>
+  <!-- ===== SCRIPTS ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js"></script>
+  <script>
+    (function() {
+      // ---- AOS ----
+      AOS.init({ duration: 800, once: true, offset: 40 });
 
-  <!-- ========================================
-       SCRIPTS
-  ======================================== -->
-  <!-- AOS -->
+      // ---- VANTA GLOBE ----
+      VANTA.GLOBE({
+        el: "#vanta-bg",
+        mouseControls: false,
+        touchControls: false,
+        gyroControls: false,
+        scale: 1.0,
+        scaleMobile: 0.8,
+        color: 0x6c8cff,
+        size: 0.9,
+        backgroundColor: 0x0b0d15
+      });
 
-  <!-- AOS -->
-  <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+      // ---- TYPED TEXT ----
+      const typedEl = document.getElementById('typed-text');
+      const phrases = ['Full-Stack Developer', 'Vue.js Enthusiast', 'React Builder', 'Problem Solver'];
+      let idx = 0, charIdx = 0, isDeleting = false;
+      function typeLoop() {
+        const current = phrases[idx];
+        if (!isDeleting) {
+          typedEl.textContent = current.substring(0, charIdx + 1);
+          charIdx++;
+          if (charIdx === current.length) { isDeleting = true; setTimeout(typeLoop, 2000); return; }
+        } else {
+          typedEl.textContent = current.substring(0, charIdx - 1);
+          charIdx--;
+          if (charIdx === 0) { isDeleting = false; idx = (idx + 1) % phrases.length; }
+        }
+        setTimeout(typeLoop, isDeleting ? 40 : 100);
+      }
+      typeLoop();
 
-  <!-- Three.js (Required for Vanta) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" defer></script>
+      // ---- SKILL BARS ----
+      const bars = document.querySelectorAll('.skill-bar-progress');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const pct = e.target.dataset.percent || 0;
+            e.target.style.width = pct + '%';
+          }
+        });
+      }, { threshold: 0.3 });
+      bars.forEach(b => observer.observe(b));
 
-  <!-- Vanta Globe -->
-  <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.globe.min.js" defer></script>
+      // ---- PROJECTS DATA ----
+      const projects = [
+        { title: 'EventHub (Edwyna)', category: 'freelance', desc: 'Event planning with announcers, schedules, check-ins.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-calendar-event-fill' },
+        { title: 'EasanMart Catalog', category: 'freelance', desc: 'Grocery SPA with Google Sheets API inventory.', tech: ['HTML5','Bootstrap 5','JavaScript'], icon: 'bi-cart4' },
+        { title: "Dr. Kanak's Clinic", category: 'freelance', desc: 'Clinic portal with scheduling, prescriptions, Razorpay.', tech: ['React.js','Fastify','PostgreSQL'], icon: 'bi-heart-pulse-fill' },
+        { title: 'Sri Mayil Builders', category: 'freelance', desc: 'Construction portal with scroll animations & estimator.', tech: ['React.js','CSS Animations','Scroll Effects'], icon: 'bi-buildings-fill' },
+        { title: 'CRM Lead Generation', category: 'freelance', desc: 'AI lead pipeline with Groq, Playwright, Mistral.', tech: ['Node.js','Groq API','Playwright'], icon: 'bi-envelope-check-fill' },
+        { title: 'AADHIRA Hackathon', category: 'freelance', desc: 'Hackathon portal with Fastify & Neon PostgreSQL.', tech: ['Node.js','Fastify','PostgreSQL'], icon: 'bi-trophy-fill' },
+        { title: 'THREADS \'26 Portal', category: 'other', desc: 'Symposium ticketing with PDFKit & QR check-in.', tech: ['Fastify','Upstash Redis','PDFKit'], icon: 'bi-ticket-perforated-fill' },
+        { title: 'VSChats', category: 'other', desc: 'Real-time chat with Socket.io & Node.js.', tech: ['React.js','Express.js','Socket.io'], icon: 'bi-chat-dots-fill' },
+        { title: 'CryptoSign', category: 'other', desc: 'Decentralized document signing using WebCrypto.', tech: ['HTML5','JavaScript','WebCrypto'], icon: 'bi-pen-fill' },
+        { title: 'Hybrid Crypto', category: 'other', desc: 'Client-side RSA/AES encryption app.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-lock-fill' },
+        { title: 'Sona R&D Portal', category: 'other', desc: 'Research management with RBAC & SDLC workflows.', tech: ['React.js','Spring Boot','MySQL'], icon: 'bi-book-fill' },
+        { title: 'Sprintora AI Workspace', category: 'other', desc: 'AI agile workspace with Llama-3.3 & Kanban.', tech: ['React.js','Fastify','Llama-3.3'], icon: 'bi-robot' }
+      ];
 
-  <!-- Portfolio Script -->
-  <script src="script.js" defer></script>
+      const grid = document.getElementById('projects-grid');
+      function renderProjects(filter = 'all') {
+        const filtered = filter === 'all' ? projects : projects.filter(p => p.category === filter);
+        grid.innerHTML = filtered.map((p, i) => `
+          <article class="project-card" data-category="${p.category}" data-aos="fade-up" data-aos-delay="${(i%6)*50}">
+            <div class="project-card-header"><div class="project-icon-wrapper"><i class="bi ${p.icon}"></i></div>
+            <span class="project-badge ${p.category === 'freelance' ? 'badge-freelance' : 'badge-other'}"><i class="bi ${p.category === 'freelance' ? 'bi-person-badge-fill' : 'bi-layers-fill'}"></i> ${p.category.toUpperCase()}</span></div>
+            <div class="project-card-body"><h3 class="project-title">${p.title}</h3><p class="project-description">${p.desc}</p>
+            <div class="project-tech-list">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
+            <div class="project-card-footer"><a href="#" class="project-link"><i class="bi bi-eye-fill"></i> Learn More</a><a href="#" class="project-link-icon"><i class="bi bi-github"></i></a></div>
+          </article>
+        `).join('');
+        // re-init AOS for new cards
+        AOS.refresh();
+      }
+      renderProjects('all');
+
+      // ---- FILTER BUTTONS ----
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+          renderProjects(this.dataset.filter);
+        });
+      });
+
+      // ---- HAMBURGER ----
+      const hamburger = document.getElementById('nav-hamburger');
+      const navMenu = document.getElementById('navigation-menu');
+      hamburger.addEventListener('click', function() {
+        this.classList.toggle('open');
+        navMenu.classList.toggle('open');
+      });
+      // close on link click
+      navMenu.querySelectorAll('.nav-item').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          navMenu.classList.remove('open');
+        });
+      });
+
+      // ---- THEME TOGGLE ----
+      const themeToggle = document.getElementById('theme-toggle');
+      const themeIcon = document.getElementById('theme-icon');
+      let dark = true;
+      themeToggle.addEventListener('click', function() {
+        dark = !dark;
+        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
+        const root = document.documentElement.style;
+        if (!dark) {
+          root.setProperty('--bg-primary', '#f4f6fc');
+          root.setProperty('--bg-secondary', '#e8ecf5');
+          root.setProperty('--bg-card', '#ffffff');
+          root.setProperty('--bg-card-hover', '#f0f3fd');
+          root.setProperty('--text-primary', '#0b0d15');
+          root.setProperty('--text-secondary', '#2a2f4a');
+          root.setProperty('--border-light', '#d0d8e8');
+          themeIcon.className = 'bi bi-moon-fill';
+        } else {
+          root.setProperty('--bg-primary', '#0b0d15');
+          root.setProperty('--bg-secondary', '#11131f');
+          root.setProperty('--bg-card', '#181b2b');
+          root.setProperty('--bg-card-hover', '#1f2340');
+          root.setProperty('--text-primary', '#f0f3fd');
+          root.setProperty('--text-secondary', '#b1b9d9');
+          root.setProperty('--border-light', '#2a2f4a');
+          themeIcon.className = 'bi bi-sun-fill';
+        }
+      });
+
+      // ---- CURSOR (desktop) ----
+      const dot = document.getElementById('cursor-dot');
+      const ring = document.getElementById('cursor-ring');
+      if (window.matchMedia('(hover: hover)').matches) {
+        document.addEventListener('mousemove', e => {
+          dot.style.left = e.clientX + 'px';
+          dot.style.top = e.clientY + 'px';
+          ring.style.left = e.clientX + 'px';
+          ring.style.top = e.clientY + 'px';
+        });
+      }
+
+      // ---- FLOATING CONTACT ----
+      // simple scroll to contact
+    })();
+  </script>
 </body>
 </html>
