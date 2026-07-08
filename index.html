@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
@@ -29,19 +29,19 @@
     }
 
     :root {
-      --bg-primary: #0b0d15;
-      --bg-secondary: #11131f;
-      --bg-card: #181b2b;
-      --bg-card-hover: #1f2340;
-      --text-primary: #f0f3fd;
-      --text-secondary: #b1b9d9;
+      --bg-primary: #f4f6fc;
+      --bg-secondary: #e8ecf5;
+      --bg-card: #ffffff;
+      --bg-card-hover: #f0f3fd;
+      --text-primary: #0b0d15;
+      --text-secondary: #2a2f4a;
       --text-muted: #6b7399;
       --accent: #6c8cff;
-      --accent-glow: rgba(108, 140, 255, 0.25);
-      --border-light: #2a2f4a;
-      --bg-header: rgba(11, 13, 21, 0.75);
-      --gradient-name: linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%);
-      --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+      --accent-glow: rgba(108, 140, 255, 0.15);
+      --border-light: #d0d8e8;
+      --bg-header: rgba(244, 246, 252, 0.85);
+      --gradient-name: linear-gradient(135deg, #0b0d15 0%, #3b5bdb 100%);
+      --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
       --radius: 20px;
       --radius-sm: 12px;
       --transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1310,9 +1310,6 @@
         <a href="#contact" class="nav-item"><i class="bi bi-send"></i> Contact</a>
       </nav>
       <div class="nav-actions">
-        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
-          <i class="bi bi-sun-fill" id="theme-icon"></i>
-        </button>
         <div class="hamburger" id="nav-hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
         </div>
@@ -1565,7 +1562,7 @@
         scaleMobile: 0.8,
         color: 0x6c8cff,
         size: 0.9,
-        backgroundColor: 0x0b0d15
+        backgroundColor: 0xf4f6fc
       });
 
       // ---- TYPED TEXT ----
@@ -1656,48 +1653,6 @@
         });
       });
 
-      // ---- THEME TOGGLE ----
-      const themeToggle = document.getElementById('theme-toggle');
-      const themeIcon = document.getElementById('theme-icon');
-      let dark = true;
-      themeToggle.addEventListener('click', function() {
-        dark = !dark;
-        document.documentElement.setAttribute('data-theme', dark ? 'dark' : 'light');
-        const root = document.documentElement.style;
-        if (!dark) {
-          root.setProperty('--bg-primary', '#f4f6fc');
-          root.setProperty('--bg-secondary', '#e8ecf5');
-          root.setProperty('--bg-card', '#ffffff');
-          root.setProperty('--bg-card-hover', '#f0f3fd');
-          root.setProperty('--text-primary', '#0b0d15');
-          root.setProperty('--text-secondary', '#2a2f4a');
-          root.setProperty('--border-light', '#d0d8e8');
-          root.setProperty('--bg-header', 'rgba(244, 246, 252, 0.85)');
-          root.setProperty('--gradient-name', 'linear-gradient(135deg, #0b0d15 0%, #3b5bdb 100%)');
-          themeIcon.className = 'bi bi-moon-fill';
-          if (vantaEffect) {
-            vantaEffect.setOptions({
-              backgroundColor: 0xf4f6fc
-            });
-          }
-        } else {
-          root.setProperty('--bg-primary', '#0b0d15');
-          root.setProperty('--bg-secondary', '#11131f');
-          root.setProperty('--bg-card', '#181b2b');
-          root.setProperty('--bg-card-hover', '#1f2340');
-          root.setProperty('--text-primary', '#f0f3fd');
-          root.setProperty('--text-secondary', '#b1b9d9');
-          root.setProperty('--border-light', '#2a2f4a');
-          root.setProperty('--bg-header', 'rgba(11, 13, 21, 0.75)');
-          root.setProperty('--gradient-name', 'linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%)');
-          themeIcon.className = 'bi bi-sun-fill';
-          if (vantaEffect) {
-            vantaEffect.setOptions({
-              backgroundColor: 0x0b0d15
-            });
-          }
-        }
-      });
 
       // ---- CURSOR (desktop) ----
       const dot = document.getElementById('cursor-dot');
