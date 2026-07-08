@@ -39,6 +39,8 @@
       --accent: #6c8cff;
       --accent-glow: rgba(108, 140, 255, 0.25);
       --border-light: #2a2f4a;
+      --bg-header: rgba(11, 13, 21, 0.75);
+      --gradient-name: linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%);
       --shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
       --radius: 20px;
       --radius-sm: 12px;
@@ -185,7 +187,7 @@
       width: 100%;
       z-index: 1000;
       padding: 0.6rem 1rem;
-      background: rgba(11, 13, 21, 0.7);
+      background: var(--bg-header);
       backdrop-filter: blur(16px) saturate(180%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.04);
       transition: background 0.3s;
@@ -385,7 +387,7 @@
       font-size: clamp(2.6rem, 7vw, 4.6rem);
       line-height: 1.1;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%);
+      background: var(--gradient-name);
       -webkit-background-clip: text;
       background-clip: text;
       -webkit-text-fill-color: transparent;
@@ -1554,7 +1556,7 @@
       AOS.init({ duration: 800, once: true, offset: 40 });
 
       // ---- VANTA GLOBE ----
-      VANTA.GLOBE({
+      const vantaEffect = VANTA.GLOBE({
         el: "#vanta-bg",
         mouseControls: false,
         touchControls: false,
@@ -1670,7 +1672,14 @@
           root.setProperty('--text-primary', '#0b0d15');
           root.setProperty('--text-secondary', '#2a2f4a');
           root.setProperty('--border-light', '#d0d8e8');
+          root.setProperty('--bg-header', 'rgba(244, 246, 252, 0.85)');
+          root.setProperty('--gradient-name', 'linear-gradient(135deg, #0b0d15 0%, #3b5bdb 100%)');
           themeIcon.className = 'bi bi-moon-fill';
+          if (vantaEffect) {
+            vantaEffect.setOptions({
+              backgroundColor: 0xf4f6fc
+            });
+          }
         } else {
           root.setProperty('--bg-primary', '#0b0d15');
           root.setProperty('--bg-secondary', '#11131f');
@@ -1679,7 +1688,14 @@
           root.setProperty('--text-primary', '#f0f3fd');
           root.setProperty('--text-secondary', '#b1b9d9');
           root.setProperty('--border-light', '#2a2f4a');
+          root.setProperty('--bg-header', 'rgba(11, 13, 21, 0.75)');
+          root.setProperty('--gradient-name', 'linear-gradient(135deg, #f0f3fd 0%, #a0b4ff 100%)');
           themeIcon.className = 'bi bi-sun-fill';
+          if (vantaEffect) {
+            vantaEffect.setOptions({
+              backgroundColor: 0x0b0d15
+            });
+          }
         }
       });
 
