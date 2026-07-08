@@ -1543,6 +1543,42 @@
     </div>
   </footer>
 
+  <!-- Project Detail Modal -->
+  <div id="project-modal" class="modal" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <div class="modal-icon-wrap" id="modal-icon-container">
+          <i class="bi bi-box-seam-fill"></i>
+        </div>
+        <div>
+          <h3 class="modal-title" id="modal-project-title">Project Title</h3>
+          <p class="modal-subtitle" id="modal-project-subtitle">Subtitle</p>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-section">
+          <h4><i class="bi bi-exclamation-triangle-fill" style="color:#f59e0b;"></i> The Problem</h4>
+          <p id="modal-project-problem" style="margin-top:0.3rem;">Problem description...</p>
+        </div>
+        <div class="modal-section">
+          <h4><i class="bi bi-check-circle-fill" style="color:#10b981;"></i> Our Solution</h4>
+          <p id="modal-project-solution" style="margin-top:0.3rem;">Solution description...</p>
+        </div>
+        <div class="modal-section">
+          <h4><i class="bi bi-cpu-fill" style="color:var(--accent);"></i> Technologies Used</h4>
+          <div class="project-tech-list" id="modal-project-techs" style="margin-top:0.5rem;">
+            <!-- Tech badges -->
+          </div>
+        </div>
+      </div>
+      <div class="project-card-footer" style="margin-top:2rem; padding-top:1.2rem; border-top:1px solid var(--border-light); justify-content: flex-end; gap: 1rem;">
+        <a href="#" id="modal-live-link" target="_blank" class="project-link" style="display:none;"><i class="bi bi-eye-fill"></i> Live Demo</a>
+        <a href="#" id="modal-project-link" target="_blank" class="btn btn-primary" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;"><i class="bi bi-github"></i> View Repository</a>
+      </div>
+    </div>
+  </div>
+
   <!-- Floating Contact Button -->
   <a href="#contact" class="floating-contact-btn" aria-label="Contact"><i class="bi bi-chat-dots-fill"></i></a>
 
@@ -1601,19 +1637,137 @@
 
       // ---- PROJECTS DATA ----
       const projects = [
-        { title: 'EventHub (Edwyna)', category: 'freelance', desc: 'Event planning with announcers, schedules, check-ins.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-calendar-event-fill', link: 'https://github.com/vimalRaj45/EventHub' },
-        { title: 'EasanMart Catalog', category: 'freelance', desc: 'Grocery SPA with Google Sheets API inventory.', tech: ['HTML5','Bootstrap 5','JavaScript'], icon: 'bi-cart4', link: 'https://github.com/vimalRaj45/EasanMart' },
-        { title: "Dr. Kanak's Clinic", category: 'freelance', desc: 'Clinic portal with scheduling, prescriptions, Razorpay.', tech: ['React.js','Fastify','PostgreSQL'], icon: 'bi-heart-pulse-fill', link: 'https://github.com/vimalRaj45/Clinic' },
-        { title: 'Sri Mayil Builders', category: 'freelance', desc: 'Construction portal with scroll animations & estimator.', tech: ['React.js','CSS Animations','Scroll Effects'], icon: 'bi-buildings-fill', link: 'https://github.com/vimalRaj45/Sri-Mayil-Builders' },
-        { title: 'CRM Lead Generation', category: 'freelance', desc: 'AI lead pipeline with Groq, Playwright, Mistral.', tech: ['Node.js','Groq API','Playwright'], icon: 'bi-envelope-check-fill', link: 'https://github.com/vimalRaj45/crm-finalv1' },
-        { title: 'AADHIRA Hackathon', category: 'freelance', desc: 'Hackathon portal with Fastify & Neon PostgreSQL.', tech: ['Node.js','Fastify','PostgreSQL'], icon: 'bi-trophy-fill', link: 'https://github.com/vimalRaj45/Aadhira' },
-        { title: 'THREADS \'26 Portal', category: 'other', desc: 'Symposium ticketing with PDFKit & QR check-in.', tech: ['Fastify','Upstash Redis','PDFKit'], icon: 'bi-ticket-perforated-fill', link: 'https://github.com/vimalRaj45/threads26' },
-        { title: 'VSChats', category: 'other', desc: 'Real-time chat with Socket.io & Node.js.', tech: ['React.js','Express.js','Socket.io'], icon: 'bi-chat-dots-fill', link: 'https://github.com/vimalRaj45/vschats' },
-        { title: 'CryptoSign', category: 'other', desc: 'Decentralized document signing using WebCrypto.', tech: ['HTML5','JavaScript','WebCrypto'], icon: 'bi-pen-fill', link: 'https://github.com/vimalRaj45/cryptos' },
-        { title: 'Hybrid Crypto', category: 'other', desc: 'Client-side RSA/AES encryption app.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-lock-fill', link: 'https://github.com/vimalRaj45/hybrid-crypto' },
-        { title: 'Sona R&D Portal', category: 'other', desc: 'Research management with RBAC & SDLC workflows.', tech: ['React.js','Spring Boot','MySQL'], icon: 'bi-book-fill', link: 'https://github.com/naveenraj59/sona-rd-portal-backend' },
-        { title: 'Sprintora AI Workspace', category: 'other', desc: 'AI agile workspace with Llama-3.3 & Kanban.', tech: ['React.js','Fastify','Llama-3.3'], icon: 'bi-robot', link: 'https://github.com/vimalRaj45/vsgrps_agile_frontend', live: 'https://agile.vsgrps.com' }
+        { id: 'edwyna', title: 'EventHub (Edwyna)', category: 'freelance', desc: 'Event planning with announcers, schedules, check-ins.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-calendar-event-fill', link: 'https://github.com/vimalRaj45/EventHub' },
+        { id: 'easanmart', title: 'EasanMart Catalog', category: 'freelance', desc: 'Grocery SPA with Google Sheets API inventory.', tech: ['HTML5','Bootstrap 5','JavaScript'], icon: 'bi-cart4', link: 'https://github.com/vimalRaj45/EasanMart' },
+        { id: 'drkankas', title: "Dr. Kanak's Clinic", category: 'freelance', desc: 'Clinic portal with scheduling, prescriptions, Razorpay.', tech: ['React.js','Fastify','PostgreSQL'], icon: 'bi-heart-pulse-fill', link: 'https://github.com/vimalRaj45/Clinic' },
+        { id: 'smb', title: 'Sri Mayil Builders', category: 'freelance', desc: 'Construction portal with scroll animations & estimator.', tech: ['React.js','CSS Animations','Scroll Effects'], icon: 'bi-buildings-fill', link: 'https://github.com/vimalRaj45/Sri-Mayil-Builders' },
+        { id: 'crm', title: 'CRM Lead Generation', category: 'freelance', desc: 'AI lead pipeline with Groq, Playwright, Mistral.', tech: ['Node.js','Groq API','Playwright'], icon: 'bi-envelope-check-fill', link: 'https://github.com/vimalRaj45/crm-finalv1' },
+        { id: 'aadhira', title: 'AADHIRA Hackathon', category: 'freelance', desc: 'Hackathon portal with Fastify & Neon PostgreSQL.', tech: ['Node.js','Fastify','PostgreSQL'], icon: 'bi-trophy-fill', link: 'https://github.com/vimalRaj45/Aadhira' },
+        { id: 'threads26', title: 'THREADS \'26 Portal', category: 'other', desc: 'Symposium ticketing with PDFKit & QR check-in.', tech: ['Fastify','Upstash Redis','PDFKit'], icon: 'bi-ticket-perforated-fill', link: 'https://github.com/vimalRaj45/threads26' },
+        { id: 'vschats', title: 'VSChats', category: 'other', desc: 'Real-time chat with Socket.io & Node.js.', tech: ['React.js','Express.js','Socket.io'], icon: 'bi-chat-dots-fill', link: 'https://github.com/vimalRaj45/vschats' },
+        { id: 'cryptosign', title: 'CryptoSign', category: 'other', desc: 'Decentralized document signing using WebCrypto.', tech: ['HTML5','JavaScript','WebCrypto'], icon: 'bi-pen-fill', link: 'https://github.com/vimalRaj45/cryptos' },
+        { id: 'hybrid_crypto', title: 'Hybrid Crypto', category: 'other', desc: 'Client-side RSA/AES encryption app.', tech: ['HTML5','CSS3','JavaScript'], icon: 'bi-lock-fill', link: 'https://github.com/vimalRaj45/hybrid-crypto' },
+        { id: 'sona_rd', title: 'Sona R&D Portal', category: 'other', desc: 'Research management with RBAC & SDLC workflows.', tech: ['React.js','Spring Boot','MySQL'], icon: 'bi-book-fill', link: 'https://github.com/naveenraj59/sona-rd-portal-backend' },
+        { id: 'sprintora', title: 'Sprintora AI Workspace', category: 'other', desc: 'AI agile workspace with Llama-3.3 & Kanban.', tech: ['React.js','Fastify','Llama-3.3'], icon: 'bi-robot', link: 'https://github.com/vimalRaj45/vsgrps_agile_frontend', live: 'https://agile.vsgrps.com' }
       ];
+
+      const projectDetails = {
+        sprintora: {
+          title: "Sprintora AI Agile Workspace",
+          subtitle: "AI-Native Multi-Tenant Agile Platform",
+          icon: "bi-robot",
+          problem: "Engineering teams struggle to break down high-level requirements into trackable tasks, often spending hours in planning meetings without clear role assignments or time estimates.",
+          solution: "Sprintora uses Llama-3.3 (via Groq API) to automatically decompose requirements into structured sprint tasks, estimate hours, map roles, and generate Kanban boards with real-time updates — all within a secure multi-tenant workspace.",
+          techs: ["React.js", "Fastify", "PostgreSQL", "Llama-3.3 (Groq)", "JWT Auth"],
+          link: "https://github.com/vimalRaj45/vsgrps_agile_frontend",
+          liveLink: "https://agile.vsgrps.com",
+        },
+        cryptosign: {
+          title: "CryptoSign Identity Engine",
+          subtitle: "RSA-PSS Signature Signing & Validation",
+          icon: "bi-pen-fill",
+          problem: "Digital documents are often shared without any cryptographic proof of authenticity, making them vulnerable to tampering and impersonation attacks.",
+          solution: "CryptoSign generates RSA-2048 key pairs in-browser, performs digital signing using WebCrypto's SHA-256 with RSA-PSS padding, and validates document integrity entirely on the client-side with no server dependency.",
+          techs: ["HTML5", "JavaScript", "WebCrypto API", "Bootstrap 5"],
+          link: "https://github.com/vimalRaj45/cryptos",
+        },
+        crm: {
+          title: "CRM System for Lead Generation",
+          subtitle: "7-Stage AI-Powered Lead Qualification Pipeline",
+          icon: "bi-envelope-check-fill",
+          problem: "Sales and recruitment teams manually sift through hundreds of emails to identify and qualify R&D leadership opportunities — a slow, error-prone process that causes missed leads and delays in the entire sales pipeline.",
+          solution: "A fully automated 7-stage pipeline: (1) Gmail IMAP Ingestion with subject de-duplication; (2) Groq LLM (Llama-3.1-8b-instant) role extraction targeting manufacturing, auto, aerospace, pharma, medtech, and GCCs; (3) Serper API URL ranking: LinkedIn > Naukri > Indeed > BeBee > SimplyHired > Official page; (4) Playwright scraping with local 7-day employee cache; (5) Mistral LLM scoring with strategy boost (+15) and pricing penalty (-20); (6) Threshold gate (employees >= 500 AND score >= 50); (7) Dynamic Google Sheets integration with detailed skipped reasons for auditable pipeline logging.",
+          techs: ["Node.js", "Groq API (Llama-3.1)", "Playwright", "Serper API", "Mistral LLM", "Google Sheets API"],
+          link: "https://github.com/vimalRaj45/crm-finalv1",
+        },
+        drkankas: {
+          title: "Dr. Kanak's Speciality Clinic",
+          subtitle: "Patient Portal & Booking Console",
+          icon: "bi-heart-pulse-fill",
+          problem: "Small clinics rely on phone calls and paper records for appointment management, causing scheduling conflicts, delayed prescriptions, and no digital payment trail.",
+          solution: "A clinic management system with appointment scheduling, digital prescription management, integrated Razorpay payment checkout, and service-worker push notifications.",
+          techs: ["React.js", "Fastify", "PostgreSQL", "Razorpay", "Service Workers"],
+          link: "https://github.com/vimalRaj45/drkankasfrontend",
+          liveLink: "https://drkanaks.com/",
+        },
+        vschats: {
+          title: "VSChats – Real-Time Chat Engine",
+          subtitle: "Full-Stack WebSockets Application",
+          icon: "bi-chat-dots-fill",
+          problem: "Standard HTTP polling-based chat apps suffer from latency and wasted server resources. Users expect instant message delivery across multiple devices simultaneously.",
+          solution: "Uses Socket.io WebSockets for sub-50ms message delivery, React.js for fluid room-based UI and user presence indicators, backed by Node.js and persistent room states.",
+          techs: ["React.js", "Express.js", "Socket.io", "Node.js", "PWA"],
+          link: "https://github.com/vimalRaj45/vschats",
+          liveLink: "https://vschat.netlify.app/",
+        },
+        edwyna: {
+          title: "EventHub (Edwyna)",
+          subtitle: "Event Coordination Platform",
+          icon: "bi-calendar-event-fill",
+          problem: "Event coordinators lack a centralized platform to manage schedules, communicate announcements, and handle attendee check-ins simultaneously for large-scale events.",
+          solution: "An event planning web platform featuring schedule mapping, organizer dashboards with real-time announcements, and participant check-in workflows.",
+          techs: ["HTML5", "CSS3", "JavaScript", "Responsive Design"],
+          link: "https://github.com/vimalRaj45/edwyna",
+        },
+        aadhira: {
+          title: "AADHIRA Hackathon Portal",
+          subtitle: "Team Registry & Fastify Backend",
+          icon: "bi-trophy-fill",
+          problem: "Hackathon organizers managing hundreds of teams need a reliable system that prevents duplicate entries and automates team communication.",
+          solution: "Built on Fastify and Neon serverless PostgreSQL, this portal handles team registration, college validation, duplicate detection, and email updates.",
+          techs: ["Node.js", "Fastify", "Neon PostgreSQL", "HTML5", "CSS3"],
+          link: "https://github.com/vimalRaj45/aadhirasolutions_hacakthon",
+          liveLink: "https://aadhira.onrender.com/generator",
+        },
+        hybrid_crypto: {
+          title: "Hybrid Encryption Hub",
+          subtitle: "AES-128-GCM & RSA-2048 Data Transmission",
+          icon: "bi-lock-fill",
+          problem: "Sharing files securely without end-to-end encryption exposes payload keys. Symmetic-only encryption has key-sharing risks; asymmetric-only is slow for large data.",
+          solution: "Combines AES-128-GCM for payload encryption with RSA-2048 for key exchange using WebCrypto APIs entirely in-browser.",
+          techs: ["HTML5", "CSS3", "JavaScript", "WebCrypto API"],
+          link: "https://github.com/vimalRaj45/Crypto",
+        },
+        smb: {
+          title: "Sri Mayil Builders",
+          subtitle: "Construction Cost Estimator & Web Portal",
+          icon: "bi-buildings-fill",
+          problem: "Construction firms lack web tools to engage potential clients and provide interactive cost estimates without requiring in-person meetings.",
+          solution: "Features cost calculations, scroll animations, residential galleries, and a Vastu-compliant interactive calculator that computes material and labor costs.",
+          techs: ["React.js", "CSS Animations", "Scroll Effects"],
+          link: "https://github.com/vimalRaj45/SMB",
+          liveLink: "https://srimayilbuilders.com/",
+        },
+        easanmart: {
+          title: "EasanMart Catalog",
+          subtitle: "Grocery Catalog SPA",
+          icon: "bi-cart4",
+          problem: "Local supermarkets struggle to provide customers with real-time product catalogs and stock availability without complex e-commerce setups.",
+          solution: "A catalog app reading inventory dynamically from Google Sheets via API, with real-time search-and-filter options.",
+          techs: ["HTML5", "CSS3", "JavaScript", "Bootstrap 5", "Google Sheets API"],
+          link: "https://github.com/vimalRaj45/easanmart",
+          liveLink: "https://easanmart.netlify.app/",
+        },
+        threads26: {
+          title: "THREADS '26 Event Portal",
+          subtitle: "Ticketing & On-Spot Registration System",
+          icon: "bi-ticket-perforated-fill",
+          problem: "College symposiums managing hundreds of participants face registration bottlenecks, ticket delays, and gate check-in issues.",
+          solution: "Symposium ticketing system with Fastify backend and Upstash Redis. Auto-emails ticket PDFs and scans QR codes for check-in.",
+          techs: ["Node.js", "Fastify", "PostgreSQL", "Upstash Redis", "PDFKit"],
+          link: "https://github.com/vimalRaj45/threads26",
+          liveLink: "https://threadscse.co.in/",
+        },
+        sona_rd: {
+          title: "Sona College R&D Portal",
+          subtitle: "Centralized Research Management System",
+          icon: "bi-book-fill",
+          problem: "College R&D departments rely on opaque spreadsheets to track publications, project proposals, and fund allocations.",
+          solution: "Research portal with Spring Boot backend and React frontend. Handles role-based access control, approvals, and documents.",
+          techs: ["React.js", "Spring Boot", "Java", "MySQL", "REST APIs"],
+          link: "https://github.com/naveenraj59/sona-rd-portal-backend",
+        },
+      };
 
       const grid = document.getElementById('projects-grid');
       function renderProjects(filter = 'all') {
@@ -1625,7 +1779,7 @@
             <div class="project-card-body"><h3 class="project-title">${p.title}</h3><p class="project-description">${p.desc}</p>
             <div class="project-tech-list">${p.tech.map(t => `<span class="tech-tag">${t}</span>`).join('')}</div></div>
             <div class="project-card-footer">
-              <a href="${p.live || p.link || 'https://github.com/vimalraj45'}" target="_blank" class="project-link"><i class="bi bi-eye-fill"></i> ${p.live ? 'Live Demo' : 'View Code'}</a>
+              <a href="#" class="project-link view-project-details" data-project="${p.id}"><i class="bi-info-circle-fill"></i> Learn More</a>
               <a href="${p.link || 'https://github.com/vimalraj45'}" target="_blank" class="project-link-icon"><i class="bi bi-github"></i></a>
             </div>
           </article>
@@ -1659,6 +1813,75 @@
         });
       });
 
+      // ---- PROJECT DETAIL MODAL INTERACTION ----
+      const modal = document.getElementById("project-modal");
+      const modalCloseBtn = document.getElementById("modal-close-btn");
+      const modalTitle = document.getElementById("modal-project-title");
+      const modalSubtitle = document.getElementById("modal-project-subtitle");
+      const modalProblem = document.getElementById("modal-project-problem");
+      const modalSolution = document.getElementById("modal-project-solution");
+      const modalTechs = document.getElementById("modal-project-techs");
+      const modalLink = document.getElementById("modal-project-link");
+      const modalLive = document.getElementById("modal-live-link");
+      const modalIconContainer = document.getElementById("modal-icon-container");
+
+      function openProjectModal(key) {
+        const d = projectDetails[key];
+        if (!d) return;
+
+        modalTitle.textContent = d.title;
+        modalSubtitle.textContent = d.subtitle || '';
+        modalProblem.textContent = d.problem || '';
+        modalSolution.textContent = d.solution || '';
+        modalLink.setAttribute("href", d.link || 'https://github.com/vimalraj45');
+
+        if (d.liveLink) {
+          modalLive.setAttribute("href", d.liveLink);
+          modalLive.style.display = "inline-flex";
+        } else {
+          modalLive.style.display = "none";
+        }
+
+        if (modalIconContainer) {
+          modalIconContainer.innerHTML = `<i class="bi ${d.icon || 'bi-box-seam-fill'}"></i>`;
+        }
+
+        modalTechs.innerHTML = "";
+        if (d.techs) {
+          d.techs.forEach(t => {
+            const span = document.createElement("span");
+            span.className = "tech-tag";
+            span.textContent = t;
+            modalTechs.appendChild(span);
+          });
+        }
+
+        modal.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        modal.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+
+      // Delegate click listeners on the grid to catch dynamic project detail clicks
+      grid.addEventListener('click', e => {
+        const btn = e.target.closest('.view-project-details');
+        if (!btn) return;
+        e.preventDefault();
+        const key = btn.dataset.project;
+        openProjectModal(key);
+      });
+
+      if (modalCloseBtn) {
+        modalCloseBtn.addEventListener("click", closeModal);
+      }
+      window.addEventListener("click", e => {
+        if (e.target === modal) {
+          closeModal();
+        }
+      });
 
       // ---- CURSOR (desktop) ----
       const dot = document.getElementById('cursor-dot');
